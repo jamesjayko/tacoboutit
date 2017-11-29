@@ -1,5 +1,8 @@
-$(document).ready( controller.initializeApp );
+$(document).ready( initializeApp );
 
+function initializeApp(){
+    console.log('it works?');
+}
 
 //====================================================//
 //==================== MODEL =========================//
@@ -27,8 +30,7 @@ view = {
 
 
 controller = {
-    initializeApp: function(){
-        console.log('it works?');
-    }
+
 };
+
 
