@@ -27,38 +27,38 @@ var view = {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 15,
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
+        //     styles: [
+        //         {
+        //             featureType: "poi",
+        //             elementType: "labels",
+        //             stylers: [{ visibility: "off" }]
+        //         },
+        //         {
+        //             featureType: "water",
+        //             elementType: "geometry",
+        //             stylers: [{ color: "#84C94B" }]
+        //         },
+        //         {
+        //             featureType: "landscape",
+        //             elementType: "geometry",
+        //             stylers: [{ color: "#F4D16C" }]
+        //         },
+        //         {
+        //             featureType: "road",
+        //             elementType: "geometry",
+        //             stylers: [{ color: "#AA6C2B" }]
+        //         },
+        //         {
+        //             featureType: "transit",
+        //             elementType: "geometry",
+        //             stylers: [{ color: "#EE6C4B" }]
+        //         },
+        //         {
+        //             featureType: "poi",
+        //             elementType: "geometry",
+        //             stylers: [{ color: "#F4D16C" }]
+        //         }
+        //     ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -66,8 +66,8 @@ var view = {
         service.nearbySearch({
             location: model.searchLocation,
             radius: 1000,
-            keyword: ['taco'],
-            type: ['restaurant'],
+            keyword: ['taco + restaurant'],
+            // type: ['restaurant'],
         }, view.callback);
     },
     callback: function(results, status) {
@@ -83,7 +83,8 @@ var view = {
         var marker = new google.maps.Marker({
             map: model.map,
             position: place.geometry.location,
-            icon: "images/taco_marker.png"
+            icon: "images/taco_marker.png",
+            class: 'marker',
         });
 
         google.maps.event.addListener(marker, 'click', function() {
