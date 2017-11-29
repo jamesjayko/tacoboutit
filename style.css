@@ -1,10 +1,168 @@
-#map {
-    height: 500px;
-    width: 700px;
+* {
+    box-sizing: border-box;
 }
-/* Optional: Makes the sample page fill the window. */
 html, body {
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
+    background-color: purple;
+}
+
+
+/******** modal container and content styling *******/
+
+
+.container, .recipeModalContainer  {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 500px;
+    max-width: 100%;
+    height: 100%;
+    min-height: 500px;
+}
+
+.recipeModalContainer {
+    top: -100%;
+    transition: 1s;
+}
+
+.homeContainer, .recipeModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 95%;
+    background-color: tan;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.homeContainer > button {
+    position: relative;
+    display: block;
+    height: 25vh;
+    width: 90%;
+    margin: 20px;
+    font-size: 5vh;
+    top: 10vh;
+    color: white;
+    border-radius: 30px;
+}
+
+.homeContainer > button:focus {
+    outline: none;
+}
+
+.makeBtn {
+    border: 6px solid;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
+}
+
+.makeBtn:active {
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
+}
+
+.findBtn {
+    border: 6px solid;
+    background-color: green;
+    border-color: #00a400 #007500 #007500 #00a400;
+}
+
+.findBtn:active {
+    border-color: #007500 #00a400 #00a400 #007500;
+}
+
+.homeContainer > h1 {
+    margin: 0;
+    font-size: 5rem;
+    color: #58260e;
+}
+
+.recipeName {
+    color: #58260e;
+    width: 95%;
+    text-align: center;
+}
+
+.recipeName h2 {
+    margin: 0;
+    padding: 5px 15px;
+    font-size: 2.5rem;
+}
+
+.recipeImage {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 5%);
+    height: 25%;
+}
+
+.recipeImage img {
+    border: 4px solid #58260e;
+    border-radius: 4px;
+}
+
+.recipeText {
+    width: 100%;
+    padding: 15px;
+}
+
+.recipeModalButton {
+    position: absolute;
+    bottom: 1%;
+    width: 47%;
+    height: 7%;
+    font-size: 1.4rem;
+    border-radius: 25px;
+    border: 3px solid;
+}
+
+.recipeModalReturn {
+    left: 2%;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
+}
+
+.recipeModalReturn:active {
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
+}
+
+.recipeModalGetNew {
+    right: 2%;
+    background-color: green;
+    border-color: #00a400 #007500 #007500 #00a400;
+}
+
+.recipeModalGetNew:active {
+    border-color: #007500 #00a400 #00a400 #007500;
+}
+
+.recipeModalButton:focus {
+    outline: none;
+}
+
+/*********** ********/
+
+#map {
+    height: 500px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+
+
+
+/************** MEDIA QUERIES ************/
+
+@media screen and (max-width: 500px){
+    .recipeName h2 {
+        font-size: 1.5rem;
+    }
+
 }
