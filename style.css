@@ -1,8 +1,11 @@
 * {
     box-sizing: border-box;
 }
-body {
+html, body {
+    width: 100vw;
+    height: 100vh;
     margin: 0;
+    padding: 0;
     background-color: purple;
 }
 
@@ -14,8 +17,8 @@ body {
     top: 0;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 100%;
-    max-width: 500px;
+    width: 500px;
+    max-width: 100%;
     height: 100%;
     min-height: 500px;
 }
@@ -33,13 +36,14 @@ body {
 }
 
 .recipeName {
-    color: #65290e;
+    color: #58260e;
     width: 95%;
     text-align: center;
 }
 
 .recipeName h2 {
     margin: 0;
+    padding: 5px 15px;
     font-size: 2.5rem;
 }
 
@@ -51,10 +55,65 @@ body {
 }
 
 .recipeImage img {
-    border: 4px solid #65290e;
+    border: 4px solid #58260e;
     border-radius: 4px;
 }
 
 .recipeText {
     width: 100%;
+    padding: 15px;
+}
+
+.recipeModalButton {
+    position: absolute;
+    bottom: 1%;
+    width: 47%;
+    height: 7%;
+    font-size: 1.4rem;
+    border-radius: 25px;
+    border: 3px solid;
+}
+
+.recipeModalReturn {
+    left: 2%;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
+}
+
+.recipeModalReturn:active {
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
+}
+
+.recipeModalGetNew {
+    right: 2%;
+    background-color: green;
+    border-color: #00a400 #007500 #007500 #00a400;
+}
+
+.recipeModalGetNew:active {
+    border-color: #007500 #00a400 #00a400 #007500;
+}
+
+.recipeModalButton:focus {
+    outline: none;
+}
+
+/*********** ********/
+
+#map {
+    height: 500px;
+    width: 100%;
+    max-width: 700px;
+}
+
+/* Optional: Makes the sample page fill the window. */
+
+
+
+/************** MEDIA QUERIES ************/
+
+@media screen and (max-width: 500px){
+    .recipeName h2 {
+        font-size: 1.5rem;
+    }
 }
