@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    background-color: purple;
+}
+
+
+/******** recipe modal container and content styling *******/
+
+.recipeModalContainer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    min-height: 500px;
+}
+
+.recipeModal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 95%;
+    background-color: tan;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.recipeName {
+    color: #65290e;
+    width: 95%;
+    text-align: center;
+}
+
+.recipeName h2 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.recipeImage {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 5%);
+    height: 25%;
+}
+
+.recipeImage img {
+    border: 4px solid #65290e;
+    border-radius: 4px;
+}
+
+.recipeText {
+    width: 100%;
+}
