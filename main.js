@@ -1,17 +1,18 @@
 $(document).ready(function() {
+    console.log('initializing map');
 
 });
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
+var searchLocation = getLocation();
+console.log('I should happen first');
 var map;
 var infowindow;
 var resultsArr;
-var searchLocation = getLocation();
+console.log(searchLocation);
 
 function initMap() {
-
     map = new google.maps.Map(document.getElementById('map'), {
         center: searchLocation,
         zoom: 15
@@ -23,6 +24,7 @@ function initMap() {
         location: searchLocation,
         radius: 1000,
         keyword: ['taco'],
+        type: ['restaurant'],
     }, callback);
 }
 
@@ -55,10 +57,9 @@ function getLocation() {
     }
 }
 function showPosition(position) {
-    // x.innerHTML = "Latitude: " + position.coords.latitude +
-    //     "<br>Longitude: " + position.coords.longitude;
-    console.log(position.coords.latitude, position.coords.longitude);
     searchLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
+    console.log(searchLocation);
+    initMap();
 }
 // $.ajax({
 //     url: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9zxeNdRlMgwNUuz7cG9d0kl73hKFQW0&libraries=places&callback=initMap',
