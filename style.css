@@ -1,0 +1,24 @@
+.container  {
+    width: 100%;
+    max-width: 500px;
+    height: 100%;
+    min-height: 500px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border: 1px solid tan;
+}
+
+.homeContainer
+
+.homeContainer > button {
+    position: relative;
+    display: block;
+    height: 50%;
+    width: 50%;
+}
+
+.homeContainer > h1 {
+    position: relative;
+}
