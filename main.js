@@ -54,8 +54,8 @@ var view = {
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(place.name);
-            infowindow.open(model.map, this);
+            model.infoWindow.setContent(place.name);
+            model.infoWindow.open(model.map, this);
         });
     }
 };
