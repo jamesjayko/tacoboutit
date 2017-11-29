@@ -10,9 +10,10 @@ html, body {
 }
 
 
-/******** recipe modal container and content styling *******/
+/******** modal container and content styling *******/
 
-.recipeModalContainer {
+
+.container, .recipeModalContainer  {
     position: absolute;
     top: 0;
     left: 50%;
@@ -23,7 +24,12 @@ html, body {
     min-height: 500px;
 }
 
-.recipeModal {
+.recipeModalContainer {
+    top: -100%;
+    transition: 1s;
+}
+
+.homeContainer, .recipeModal {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -33,6 +39,48 @@ html, body {
     background-color: tan;
     border-radius: 30px;
     text-align: center;
+}
+
+.homeContainer > button {
+    position: relative;
+    display: block;
+    height: 25vh;
+    width: 90%;
+    margin: 20px;
+    font-size: 5vh;
+    top: 10vh;
+    color: white;
+    border-radius: 30px;
+}
+
+.homeContainer > button:focus {
+    outline: none;
+}
+
+.makeBtn {
+    border: 6px solid;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
+}
+
+.makeBtn:active {
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
+}
+
+.findBtn {
+    border: 6px solid;
+    background-color: green;
+    border-color: #00a400 #007500 #007500 #00a400;
+}
+
+.findBtn:active {
+    border-color: #007500 #00a400 #00a400 #007500;
+}
+
+.homeContainer > h1 {
+    margin: 0;
+    font-size: 5rem;
+    color: #58260e;
 }
 
 .recipeName {
@@ -116,4 +164,5 @@ html, body {
     .recipeName h2 {
         font-size: 1.5rem;
     }
+
 }
