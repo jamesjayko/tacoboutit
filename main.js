@@ -26,7 +26,39 @@ var view = {
     initMap: function() {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
-            zoom: 15
+            zoom: 15,
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{ color: "#84C94B" }]
+                },
+                {
+                    featureType: "landscape",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{ color: "#AA6C2B" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{ color: "#EE6C4B" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                }
+            ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -50,14 +82,15 @@ var view = {
         var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: model.map,
-            position: place.geometry.location
+            position: place.geometry.location,
+            icon: "images/taco_marker.png"
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-            infowindow.setContent(place.name);
-            infowindow.open(model.map, this);
+            infoWindow.setContent(place.name);
+            infoWindow.open(model.map, this);
         });
-    }
+    },
 };
 
 
