@@ -175,7 +175,7 @@ var view = {
     ele.attr("src", imgLink);
   },
   changeRecipeModalText: function(text) {
-    $(".recipeText").text(text);
+    $(".recipeText").html(text);
   },
   initList: function() {
     for (var i = 0; i < model.resultsArr.length; i++) {
@@ -268,32 +268,34 @@ var controller = {
     },
 
     tacoDataObtained: function(data) {
-    model.setCurrentTaco(data);
-    let tacoName = this.getSpecificTacoName(data.name);
+        model.setCurrentTaco(data);
+        let tacoName = this.getSpecificTacoName(data.name);
+        let gleanedRecipe = data.recipe.replace(/[#*-=]|\./g,'');
+        gleanedRecipe = gleanedRecipe.split('\n');
 
-    view.changeRecipeModalHeader(tacoName);
-    model.imgAPICall(tacoName, $("img"));
-    view.changeRecipeModalText(data.recipe);
+        view.changeRecipeModalHeader(tacoName);
+        model.imgAPICall(tacoName, $("img"));
+        view.changeRecipeModalText(gleanedRecipe);
     },
 
     getSpecificTacoName: function(longName) {
-    let endPoint = longName.indexOf(",");
-    if (endPoint === -1) {
-      return longName;
-    }
-    let shortName = longName.substr(0, endPoint) + " Tacos";
-    return shortName;
+        let endPoint = longName.indexOf(",");
+        if (endPoint === -1) {
+          return longName;
+        }
+        let shortName = longName.substr(0, endPoint) + " Tacos";
+        return shortName;
     },
 
     tacoFilter: function(ele, data) {
-    var qArray = data.items;
+        var qArray = data.items;
 
-    for (var qI = 0; qI < qArray.length; qI++) {
-      if (qArray[qI].title.indexOf("aco") !== -1) {
-        view.appendImg(ele, qArray[qI].link);
-        return qArray[qI].link;
-      }
-    }
+        for (var qI = 0; qI < qArray.length; qI++) {
+          if (qArray[qI].title.indexOf("aco") !== -1) {
+            view.appendImg(ele, qArray[qI].link);
+            return qArray[qI].link;
+          }
+        }
     },
 
     loadSearchTacoModal: function(){
