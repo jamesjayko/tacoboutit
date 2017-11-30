@@ -1,23 +1,17 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 html,
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-color: purple;
-  font-family: "Architects Daughter", cursive;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: purple;
+    font-family: "Architects Daughter", cursive;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button {
-  font-family: "Comfortaa", cursive;
+h1, h2, h3, h4, h5, h6, button {
+    font-family: "Comfortaa", cursive;
 }
 
 /******** modal container styling *******/
@@ -45,8 +39,8 @@ button {
 }
 
 .searchModalContainer {
-  top: -100%;
-  transition: 1s;
+    top: -100%;
+    transition: 1s;
 }
 
 .homeContainer,
@@ -70,21 +64,21 @@ button {
 }
 
 .homeContainer > button {
-  position: relative;
-  display: block;
-  height: 20vh;
-  width: 90%;
-  margin-bottom: 20px;
-  font-size: 5vh;
-  top: 5vh;
-  color: white;
-  border-radius: 30px;
+    position: relative;
+    display: block;
+    height: 20vh;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 5vh;
+    top: 5vh;
+    color: white;
+    border-radius: 30px;
 }
 
 /************** modal content styling *************/
 
 .homeContainer > button:focus {
-  outline: none;
+    outline: none;
 }
 
 .makeBtn {
@@ -94,7 +88,7 @@ button {
 }
 
 .makeBtn:active {
-  border-color: #a30000 #ff2627 #ff2627 #a30000;
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 
 .findBtn {
@@ -104,70 +98,66 @@ button {
 }
 
 .findBtn:active {
-  border-color: #007500 #00a400 #00a400 #007500;
+    border-color: #007500 #00a400 #00a400 #007500;
 }
 .homeContainer > div {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
-    140deg,
-    #c9ffbf,
-    #ffafbd
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(140deg, #c9ffbf, #ffafbd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   width: 90%;
   height: 40%;
   border-radius: 30px;
 }
 .homeContainer > div > h1 {
-  margin: auto auto 15%;
-  font-size: 3rem;
-  text-shadow: 3px 3px #000000;
-  color: #aa6c2b;
+    margin: auto auto 15%;
+    font-size: 3rem;
+    text-shadow: 3px 3px #000000;
+    color: #aa6c2b;
 }
 .homeContainer > div > img {
-  margin-top: 10%;
-  width: 50%;
+    margin-top: 10%;
+    width: 50%;
 }
 
 .recipeName {
-  color: #58260e;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    color: #58260e;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .recipeName h2 {
-  margin: 0;
-  padding: 5px 15px;
-  font-size: 2.5rem;
+    margin: 0;
+    padding: 5px 15px;
+    font-size: 2.5rem;
 }
 
 .recipeImage {
-  height: 25%;
+    height: 25%;
 }
 
 .recipeImage img {
-  border: 4px solid #58260e;
-  border-radius: 4px;
+    border: 4px solid #58260e;
+    border-radius: 4px;
 }
 
 .recipeText {
-  width: 100%;
-  padding: 15px;
+    width: 100%;
+    padding: 15px;
 }
 
 .ModalButton {
-  position: absolute;
-  bottom: 1%;
-  width: 47%;
-  height: 12%;
-  font-size: 1.6rem;
-  border-radius: 25px;
-  border: 3px solid;
+    position: absolute;
+    bottom: 1%;
+    width: 47%;
+    height: 12%;
+    font-size: 1.6rem;
+    border-radius: 25px;
+    border: 3px solid;
 }
 
 .recipeModalReturn {
@@ -177,7 +167,7 @@ button {
 }
 
 .searchModalReturn:active {
-  border-color: #a30000 #ff2627 #ff2627 #a30000;
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 .searchModalReturn {
   left: 2%;
@@ -192,22 +182,22 @@ button {
 }
 
 .recipeModalGetNew:active {
-  border-color: #007500 #00a400 #00a400 #007500;
+    border-color: #007500 #00a400 #00a400 #007500;
 }
 
 .recipeModalButton:focus {
-  outline: none;
+    outline: none;
 }
 
 /*********** map related styling  **********/
 .mapContainer {
-  height: 40%;
-  width: 100%;
+    height: 40%;
+    width: 100%;
 }
 #map {
-  height: 100%;
-  width: 100%;
-  max-width: 700px;
+    height: 100%;
+    width: 100%;
+    max-width: 700px;
 }
 
 /*********** loading screen related styling  **********/
@@ -236,6 +226,31 @@ button {
   }
 }
 
+#zipcodeSearch {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 10;
+    margin-top: 3%;
+    width: 31%;
+    background-color: rgba(255,255,255, 0.9);
+    border: none;
+    padding: 6px 0px;
+}
+.zipcodeBtn {
+    position: absolute;
+    z-index: 9;
+    left: 72%;
+    transform: translate(-50%);
+    margin-top: 4.5%;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 10px;
+}
+
+/************** ANIMATIONS ************/
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -251,6 +266,7 @@ button {
   body {
     font-size: 4vmin;
   }
+
   .recipeName h2 {
     font-size: 1.5rem;
   }
