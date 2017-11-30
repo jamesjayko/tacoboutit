@@ -293,7 +293,7 @@ var view = {
     },
     tacoTuesdayTimer: function(d, h, m, s) {
         $("#tacoTuesday").empty();
-        let timer = "taco tuesday: " + d + "d " + h + "h " + m + "m " + s + "s";
+        let timer =  d + "d " + h + "h " + m + "m " + s + "s" + " 'til Taco Tuesday";
         $("#tacoTuesday").append(timer);
     },
     tacoTuesdayAnnounce: function(str) {
@@ -411,6 +411,7 @@ var controller = {
     tacoTuesdayCountdown: function (date) {
         if (date.getDay() !== 2) {
             date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
+            date.setHours(0,0,0)
             // Set the date we're counting down to
             var countDownDate = new Date(date).getTime();
             // Update the count down every 1 second
