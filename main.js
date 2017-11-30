@@ -10,10 +10,18 @@ function initializeApp(){
 
 
 var model = {
+    currentTaco: null,
     map: null,
     infoWindow: null,
     resultsArr: null,
     searchLocation: null,
+    setCurrentTaco: function(data){
+        this.currentTaco = data;
+    },
+    factorTacoRecipe: function(recipe){
+        var recipeArray = recipe.split('/n');
+        console.log(recipeArray);
+    },
 };
 
 
@@ -91,6 +99,9 @@ var view = {
             model.infoWindow.open(model.map, this);
         });
     },
+    changeRecipeModalHeader: function(headerText){
+        $('.recipeName h2').text(headerText);
+    }
 };
 
 
@@ -111,6 +122,27 @@ var controller = {
         model.searchLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(model.searchLocation);
         view.initMap();
+    },
+    createTacoRecipe: function(){
+        var getTacoOptions = {
+            dataType: 'json',
+                method: 'get',
+                data: {
+
+            },
+            url: 'http://taco-randomizer.herokuapp.com/random/?full-taco=true',
+        };
+
+        $.ajax(getTacoOptions).then( controller.tacoDataObtained.bind(model) )
+    },
+    tacoDataObtained: function(data){
+        model.setCurrentTaco(data);
+        model.factorTacoRecipe(data.recipe);
+
+        view.changeRecipeModalHeader(data.name);
+
+        let tacoRecipe = data.recipe;
+        console.log(tacoRecipe)
     }
 };
 
