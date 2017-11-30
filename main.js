@@ -1,7 +1,7 @@
 $(document).ready( initializeApp );
 
 function initializeApp(){
-    // controller.getLocation();
+    controller.getLocation();
 }
 
 //====================================================//
