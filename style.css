@@ -210,6 +210,10 @@ h1, h2, h3, h4, h5, h6, button {
     overflow-x: hidden;
     overflow-y: scroll;
     margin: 0;
+    /* background: linear-gradient(140deg, #c9ffbf, #ffafbd);
+    width: 90%;
+    height: 50%;
+    border-radius: 30px; */
 }
 
 .listContainer {
@@ -230,8 +234,7 @@ h1, h2, h3, h4, h5, h6, button {
     margin: 0;
     padding: 10px;
 }
-{
-}
+
 .phoneNumber, .rating, .open, .closed, .infoBtn {
     padding: 5px;
     display: inline-block;
