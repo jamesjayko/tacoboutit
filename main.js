@@ -73,13 +73,14 @@ var model = {
             } else {
                 scrapePlaceDetails();
             }
-        }, 300);
+        }, 500);
     },
     loc: null,
     geocode: function() {
         $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + model.loc + '&key=AIzaSyDmBiq2uv9zLd2A1G5KwCbSaUYhMwO6mJg',
             method: 'get',
+            cache: false,
             dataType: 'json',
             success: function (success) {
                 model.searchLocation = success.results[0].geometry.location;
@@ -127,10 +128,10 @@ var view = {
         $(".searchModalContainer").attr("style", "top: -100");
     },
     initMap: function () {
-        model.searchLocation = {lat: 33.6509, lng: -117.7441};
+        // model.searchLocation = {lat: 33.6509, lng: -117.7441};
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
-            zoom: 15,
+            zoom: 12,
             gestureHandling: 'greedy'
             // styles: [
             //     {
@@ -170,7 +171,7 @@ var view = {
         model.service = new google.maps.places.PlacesService(model.map);
         model.service.nearbySearch({
             location: model.searchLocation,
-            radius: 1000,
+            radius: 1500,
             keyword: ('taco+mexican'),
             type: ('restaurant'),
         }, view.callback);
