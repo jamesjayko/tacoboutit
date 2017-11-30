@@ -292,7 +292,7 @@ var controller = {
         gleanedRecipe = gleanedRecipe.split('\n');
 
         view.changeRecipeModalHeader(tacoName);
-        model.imgAPICall(tacoName, $("img"));
+        // model.imgAPICall(tacoName, $("img"));
         view.changeRecipeModalText(gleanedRecipe);
     },
 
