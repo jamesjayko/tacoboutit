@@ -1,17 +1,17 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 html,
 body {
-  width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  background-color: purple;
-  font-family: "Architects Daughter", cursive;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: purple;
+    font-family: "Architects Daughter", cursive;
 }
 h1, h2, h3, h4, h5, h6, button {
-  font-family: "Comfortaa", cursive;
+    font-family: "Comfortaa", cursive;
 }
 /******** modal container styling *******/
 
@@ -22,14 +22,14 @@ h1, h2, h3, h4, h5, h6, button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 500px;
-  max-width: 100%;
-  height: 100%;
-  min-height: 500px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 500px;
+    max-width: 100%;
+    height: 100%;
+    min-height: 500px;
 }
 
 .recipeModalContainer {
@@ -38,8 +38,8 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .searchModalContainer {
-  top: -100%;
-  transition: 1s;
+    top: -100%;
+    transition: 1s;
 }
 
 .homeContainer,
@@ -63,135 +63,140 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .homeContainer > button {
-  position: relative;
-  display: block;
-  height: 20vh;
-  width: 90%;
-  margin-bottom: 20px;
-  font-size: 5vh;
-  top: 5vh;
-  color: white;
-  border-radius: 30px;
+    position: relative;
+    display: block;
+    height: 20vh;
+    width: 90%;
+    margin-bottom: 20px;
+    font-size: 5vh;
+    top: 5vh;
+    color: white;
+    border-radius: 30px;
 }
 
 /************** modal content styling *************/
 
 .homeContainer > button:focus {
-  outline: none;
+    outline: none;
 }
 
 .makeBtn {
-  border: 6px solid;
-  background-color: #ba0000;
-  border-color: #ff2627 #a30000 #a30000 #ff2627;
+    border: 6px solid;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .makeBtn:active {
-  border-color: #a30000 #ff2627 #ff2627 #a30000;
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 
 .findBtn {
-  border: 6px solid;
-  background-color: green;
-  border-color: #00a400 #007500 #007500 #00a400;
+    border: 6px solid;
+    background-color: green;
+    border-color: #00a400 #007500 #007500 #00a400;
 }
 
 .findBtn:active {
-  border-color: #007500 #00a400 #00a400 #007500;
+    border-color: #007500 #00a400 #00a400 #007500;
 }
 .homeContainer > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: lavender;
-  width: 90%;
-  height: 40%;
-  border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: lavender;
+    width: 90%;
+    height: 40%;
+    border-radius: 30px;
 }
 .homeContainer > div > h1 {
-  margin: auto auto 15%;
-  font-size: 3rem;
-  text-shadow: 3px 3px #000000;
-  color: #aa6c2b;
+    margin: auto auto 15%;
+    font-size: 3rem;
+    text-shadow: 3px 3px #000000;
+    color: #aa6c2b;
 }
 .homeContainer > div > img {
-  margin-top: 10%;
-  width: 50%;
+    margin-top: 10%;
+    width: 50%;
 }
 
 .recipeName {
-  color: #58260e;
-  width: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    color: #58260e;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .recipeName h2 {
-  margin: 0;
-  padding: 5px 15px;
-  font-size: 2.5rem;
+    margin: 0;
+    padding: 5px 15px;
+    font-size: 2.5rem;
 }
 
 .recipeImage {
-  height: 25%;
+    height: 25%;
 }
 
 .recipeImage img {
-  border: 4px solid #58260e;
-  border-radius: 4px;
+    border: 4px solid #58260e;
+    border-radius: 4px;
 }
 
 .recipeText {
-  width: 100%;
-  padding: 15px;
+    width: 100%;
+    padding: 15px;
 }
 
-.recipeModalButton {
-  position: absolute;
-  bottom: 1%;
-  width: 47%;
-  height: 12%;
-  font-size: 1.6rem;
-  border-radius: 25px;
-  border: 3px solid;
+.ModalButton {
+    position: absolute;
+    bottom: 1%;
+    width: 47%;
+    height: 12%;
+    font-size: 1.6rem;
+    border-radius: 25px;
+    border: 3px solid;
 }
 
 .recipeModalReturn {
-  left: 2%;
-  background-color: #ba0000;
-  border-color: #ff2627 #a30000 #a30000 #ff2627;
+    left: 2%;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
-.recipeModalReturn:active {
-  border-color: #a30000 #ff2627 #ff2627 #a30000;
+.searchModalReturn:active {
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
+}
+.searchModalReturn {
+    left: 2%;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .recipeModalGetNew {
-  right: 2%;
-  background-color: green;
-  border-color: #00a400 #007500 #007500 #00a400;
+    right: 2%;
+    background-color: green;
+    border-color: #00a400 #007500 #007500 #00a400;
 }
 
 .recipeModalGetNew:active {
-  border-color: #007500 #00a400 #00a400 #007500;
+    border-color: #007500 #00a400 #00a400 #007500;
 }
 
 .recipeModalButton:focus {
-  outline: none;
+    outline: none;
 }
 
 /*********** map related styling  **********/
 .mapContainer {
-  height: 40%;
-  width: 100%;
+    height: 40%;
+    width: 100%;
 }
 #map {
-  height: 100%;
-  width: 100%;
-  max-width: 700px;
+    height: 100%;
+    width: 100%;
+    max-width: 700px;
 }
 
 
@@ -256,16 +261,36 @@ html, body {
     height: 100px;
     width: 100px;
 }
-
+#zipcodeSearch {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 10;
+    margin-top: 3%;
+    width: 31%;
+    background-color: rgba(255,255,255, 0.9);
+    border: none;
+    padding: 6px 0px;
+}
+.zipcodeBtn {
+    position: absolute;
+    z-index: 9;
+    left: 72%;
+    transform: translate(-50%);
+    margin-top: 4.5%;
+    color: white;
+    background-color: green;
+    border: none;
+    border-radius: 10px;
+}
 /************** MEDIA QUERIES ************/
 
 
 @media screen and (max-width: 500px){
-  body {
-      font-size: 4vmin;
-  }
-  .recipeName h2 {
-    font-size: 1.5rem;
-  }
+    body {
+        font-size: 4vmin;
+    }
+    .recipeName h2 {
+        font-size: 1.5rem;
+    }
 }
-

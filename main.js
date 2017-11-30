@@ -11,6 +11,7 @@ function initializeApp(){
 //====================================================//
 
 
+
 var model = {
     currentTaco: null,
     i: 0,
@@ -70,8 +71,30 @@ var model = {
             }
         }, 300);
     },
-};
+    loc: null,
+    geocode: function() {
+        $.ajax({
+            url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + model.loc + '&key=AIzaSyDmBiq2uv9zLd2A1G5KwCbSaUYhMwO6mJg',
+            method: 'get',
+            dataType: 'json',
+            success: function (success) {
+                model.searchLocation = success.results[0].geometry.location;
+                console.log(model.searchLocation);
+                view.initMap();
+            },
+            error: function (error) {
+                console.log(error);
+            },
+        })
 
+    },
+    handleZipcodeInput: function() {
+        model.loc = $('#zipcodeSearch').val();
+        model.geocode();
+    }
+
+
+};
 
 
 
@@ -84,45 +107,63 @@ var model = {
 
 var view = {
     initiateClickHandlers: function(){
-        $('.recipeModalGetNew').on('click', controller.createTacoRecipe.bind( controller ) )
+        $(".makeBtn").on('click', this.showRecipeModal );
+        $(".findBtn").on('click', this.showSearchModal );
+        $(".recipeModalReturn").on('click', this.hideRecipeModal );
+        $(".searchModalReturn").on('click', this.hideSearchModal );
+        $('.recipeModalGetNew').on('click', controller.createTacoRecipe.bind( controller ) );
+        $('.zipcodeBtn').on('click', model.handleZipcodeInput)
+
+    },
+    showRecipeModal: function() {
+        $(".recipeModalContainer").css("top", "0");
+    },
+    hideRecipeModal: function() {
+        $(".recipeModalContainer").attr("style", "top: -100");
+    },
+    showSearchModal: function() {
+        $(".searchModalContainer").css("top", "0");
+    },
+    hideSearchModal: function() {
+        $(".searchModalContainer").attr("style", "top: -100");
     },
     initMap: function() {
-        model.searchLocation = {lat: 33.6509, lng: -117.7441};
+        // model.searchLocation = {lat: 33.6509, lng: -117.7441};
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 15,
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
+            // styles: [
+            //     {
+            //         featureType: "poi",
+            //         elementType: "labels",
+            //         stylers: [{ visibility: "off" }]
+            //     },
+            //     {
+            //         featureType: "water",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#84C94B" }]
+            //     },
+            //     {
+            //         featureType: "landscape",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     },
+            //     {
+            //         featureType: "road",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#AA6C2B" }]
+            //     },
+            //     {
+            //         featureType: "transit",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#EE6C4B" }]
+            //     },
+            //     {
+            //         featureType: "poi",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     }
+            // ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -223,8 +264,8 @@ var controller = {
     createTacoRecipe: function(){
         var getTacoOptions = {
             dataType: 'json',
-                method: 'get',
-                data: {
+            method: 'get',
+            data: {
 
             },
             url: 'http://taco-randomizer.herokuapp.com/random/?full-taco=true',
@@ -263,9 +304,3 @@ var controller = {
         }
     }
 };
-
-
-
-
-
-
