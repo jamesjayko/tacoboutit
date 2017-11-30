@@ -3,6 +3,7 @@ $(document).ready(initializeApp);
 
 function initializeApp() {
     view.initiateClickHandlers();
+    controller.createTacoRecipe();
 }
 
 //====================================================//
@@ -194,8 +195,16 @@ var view = {
     appendImg: function (ele, imgLink) {
         ele.attr("src", imgLink);
     },
-    changeRecipeModalText: function (text) {
-        $(".recipeText").html(text);
+    clearRecipeModalText: function(){
+        $(".recipeText").empty();
+    },
+    addRecipeModalText: function (textArray) {
+        let textTagsArray = [];
+        for (let i=0; i<textArray.length; i++) {
+            let textNode = $('<p>').text(textArray[i]);
+            textTagsArray.push(textNode);
+        }
+        $(".recipeText").append(textTagsArray);
     },
     initList: function () {
         for (var i = 0; i < model.resultsArr.length; i++) {
@@ -284,12 +293,12 @@ var controller = {
     tacoDataObtained: function(data) {
         model.setCurrentTaco(data);
         let tacoName = this.getSpecificTacoName(data.name);
-        let gleanedRecipe = data.recipe.replace(/[#*-=]|\./g,'');
-        gleanedRecipe = gleanedRecipe.split('\n');
+        let gleanedRecipe = this.gleanRecipe(data.recipe);
 
         view.changeRecipeModalHeader(tacoName);
         // model.imgAPICall(tacoName, $("img"));
-        view.changeRecipeModalText(gleanedRecipe);
+        view.clearRecipeModalText();
+        view.addRecipeModalText(gleanedRecipe);
     },
 
     getSpecificTacoName: function(longName) {
@@ -310,6 +319,22 @@ var controller = {
                 return qArray[qI].link;
             }
         }
+    },
+
+    gleanRecipe: function(recipe){
+        let gleanedRecipe = recipe.replace(/[#*-=]|\./g,'');
+        gleanedRecipe = gleanedRecipe.split('\n');
+
+        for (let i=0; i<gleanedRecipe.length; i++){
+            if (gleanedRecipe[i] === ''){
+                gleanedRecipe.splice(i, 1);
+                i--;
+            } else if (gleanedRecipe[i].indexOf('(') !== -1){
+                gleanedRecipe[i] = gleanedRecipe[i].substr(0, gleanedRecipe[i].indexOf('('));
+            }
+        }
+
+        return gleanedRecipe;
     },
 
     loadSearchTacoModal: function(){
