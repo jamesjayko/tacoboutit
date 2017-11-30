@@ -3,6 +3,7 @@ $(document).ready( initializeApp );
 function initializeApp(){
     // controller.getLocation();
     view.initiateClickHandlers();
+    controller.getLocation();
 }
 
 //====================================================//
@@ -114,7 +115,7 @@ var view = {
         var marker = new google.maps.Marker({
             map: model.map,
             position: place.geometry.location,
-            icon: "images/taco_marker.png"
+            icon: "images/taco_purp_marker.png"
         });
 
         google.maps.event.addListener(marker, 'click', function() {
