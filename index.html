@@ -16,49 +16,49 @@
 
 <body>
 
-    <div class="container">
-        <div class="homeContainer">
-            <div class="header">
-                <img src="images/tacos_logo.png" alt="">
-                <h1>Taco'bout It!</h1>
-            </div>
+<div class="container">
+    <div class="homeContainer">
+        <div class="header">
+            <img src="images/tacos_logo.png" alt="">
+            <h1>Taco'bout It!</h1>
+        </div>
 
-            <button class="makeBtn">Taco 'bout Making</button>
-            <button class="findBtn">Taco 'bout Finding</button>
-        </div>
+        <button class="makeBtn">Taco 'bout Making</button>
+        <button class="findBtn">Taco 'bout Finding</button>
     </div>
-    <div class="recipeModalContainer">
-        <div class="recipeModal">
-            <div class="recipeName">
-                <h2>Chorizo, Sweet Potato and Apple Tacos with Chipotle Sauce</h2>
-            </div>
-            <div class="recipeImage">
-                <img src="http://2.bp.blogspot.com/-DuBYMKQYAyE/Uxh5uTFhYYI/AAAAAAAAfcM/LPpUi4CjY-4/s800/Chorizo+and+Sweet+Potato+Tacos+with+Apple+and+Pomegranate+Salsa+800+9809.jpg"
-                     alt="image of taco from recipe" width="auto%" height="100%">
-            </div>
-            <div class="recipeText">
-                <p>Moroccan Lamb\n=============\n\nA Differently Spiced Meat Than Your Usual Taco\n----------------------------------------------/n/n*
-                    500 g ground lamb/n* 20 g Ras al Hanout spice. My mix contains:\n * Paprika\n * Cinnamon\n * Allspice\n
-                    * Clove\n * Toasted Mustard\n * Cumin\n * Caraway\n * Black Pepper\n* 10 g fresh lemon zest or 10 g finely
-                    ground Black Lemon Omani (Moroccoan dried preserved lemon)\n\nMix together and brown.\n</p>
-            </div>
-            <button class="ModalButton recipeModalReturn">Home</button>
-            <button class="ModalButton recipeModalGetNew">Get New Taco</button>
+</div>
+<div class="recipeModalContainer">
+    <div class="recipeModal">
+        <div class="recipeName">
+            <h2>Chorizo, Sweet Potato and Apple Tacos with Chipotle Sauce</h2>
         </div>
+        <div class="recipeImage">
+            <img src="http://2.bp.blogspot.com/-DuBYMKQYAyE/Uxh5uTFhYYI/AAAAAAAAfcM/LPpUi4CjY-4/s800/Chorizo+and+Sweet+Potato+Tacos+with+Apple+and+Pomegranate+Salsa+800+9809.jpg"
+                 alt="image of taco from recipe" width="auto%" height="100%">
+        </div>
+        <div class="recipeText">
+            <p>Moroccan Lamb\n=============\n\nA Differently Spiced Meat Than Your Usual Taco\n----------------------------------------------/n/n*
+                500 g ground lamb/n* 20 g Ras al Hanout spice. My mix contains:\n * Paprika\n * Cinnamon\n * Allspice\n
+                * Clove\n * Toasted Mustard\n * Cumin\n * Caraway\n * Black Pepper\n* 10 g fresh lemon zest or 10 g finely
+                ground Black Lemon Omani (Moroccoan dried preserved lemon)\n\nMix together and brown.\n</p>
+        </div>
+        <button class="ModalButton recipeModalReturn">Home</button>
+        <button class="ModalButton recipeModalGetNew">Get New Taco</button>
     </div>
+</div>
 
-    <div class="searchModalContainer">
-        <div class="searchModal">
-            <div class="searchName">
-                <h2>Tacos Near You</h2>
-            </div>
-            <div class="mapContainer">
-                <input id="zipcodeSearch" type="number" placeholder="search by zipcode"><button class="zipcodeBtn">Go</button>
-                <div id="map" draggable="true"></div>
-            </div>
-            <div class="placesList"></div>
+<div class="searchModalContainer">
+    <div class="searchModal">
+        <div class="searchName">
+            <h2>Tacos Near You</h2>
         </div>
+        <div class="mapContainer">
+            <input id="zipcodeSearch" type="number" placeholder="search by zipcode"><button class="zipcodeBtn">Go</button>
+            <div id="map"></div>
+        </div>
+        <div class="placesList"></div>
     </div>
+</div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9zxeNdRlMgwNUuz7cG9d0kl73hKFQW0&libraries=places" async defer></script>
 </body>

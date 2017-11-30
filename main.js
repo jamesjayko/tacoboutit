@@ -2,7 +2,7 @@ $(document).ready(initializeApp);
 
 
 function initializeApp() {
-  view.initiateClickHandlers();
+    view.initiateClickHandlers();
 }
 
 //====================================================//
@@ -11,63 +11,59 @@ function initializeApp() {
 
 
 var model = {
-  currentTaco: null,
-  i: 0,
-  map: null,
-  infoWindow: null,
-  resultsArr: null,
-  searchLocation: null,
-  service: null,
+    currentTaco: null,
+    i: 0,
+    map: null,
+    infoWindow: null,
+    resultsArr: null,
+    searchLocation: null,
+    service: null,
 
-  setCurrentTaco: function(data) {
-    this.currentTaco = data;
-  },
-  factorTacoRecipe: function(recipe) {
-    var recipeArray = recipe.split("/n");
-    console.log(recipeArray);
-  },
-  imgAPICall: function(query, ele) {
-    var ajaxOptions = {
-      url: "https://www.googleapis.com/customsearch/v1",
-      method: "GET",
-      dataType: "JSON",
-      data: {
-        q: query,
-        cx: "000707611873255015719:e0z9hyzysu4",
-        searchType: "image",
-        key: "AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM"
-      },
-      error: function(data) {
-        console.log(data);
-      }
-    };
+    setCurrentTaco: function(data) {
+        this.currentTaco = data;
+    },
+    imgAPICall: function(query, ele) {
+        var ajaxOptions = {
+            url: "https://www.googleapis.com/customsearch/v1",
+            method: "GET",
+            dataType: "JSON",
+            data: {
+                q: query,
+                cx: "000707611873255015719:e0z9hyzysu4",
+                searchType: "image",
+                key: "AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM"
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        };
 
-    $.ajax(ajaxOptions).then(controller.tacoFilter.bind(null, ele));
-  },
-  getPlaceDetails: function() {
-    var first = true;
-    function scrapePlaceDetails() {
-      model.service.getDetails(
-        {
-          placeId: model.resultsArr[model.i].place_id
-        },
-        function(place, status) {
-          model.resultsArr[model.i].simonsData = place;
-          model.i++;
+        $.ajax(ajaxOptions).then(controller.tacoFilter.bind(null, ele));
+    },
+    getPlaceDetails: function() {
+        var first = true;
+        function scrapePlaceDetails() {
+            model.service.getDetails(
+                {
+                    placeId: model.resultsArr[model.i].place_id
+                },
+                function(place, status) {
+                    model.resultsArr[model.i].simonsData = place;
+                    model.i++;
+                }
+            );
         }
-      );
-    }
-    var int = setInterval(function() {
-          if (first) {
-            first = false;
-            scrapePlaceDetails();
-          } else if (model.i > model.resultsArr.length - 1) {
-            model.i = 0;
-            clearInterval(int);
-            view.initList();
-          } else {
-            scrapePlaceDetails();
-          }
+        var int = setInterval(function() {
+            if (first) {
+                first = false;
+                scrapePlaceDetails();
+            } else if (model.i > model.resultsArr.length - 1) {
+                model.i = 0;
+                clearInterval(int);
+                view.initList();
+            } else {
+                scrapePlaceDetails();
+            }
         }, 300);
     },
     loc: null,
@@ -125,6 +121,7 @@ var view = {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 15,
+            gestureHandling: 'greedy'
             // styles: [
             //     {
             //         featureType: "poi",
@@ -201,7 +198,6 @@ var view = {
         $(".recipeText").html(text);
     },
     initList: function () {
-        debugger;
         for (var i = 0; i < model.resultsArr.length; i++) {
             var elementsList = [];
 
@@ -254,23 +250,23 @@ var view = {
 var controller = {
     getLocation: function getLocation() {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(controller.showPosition);
+            navigator.geolocation.getCurrentPosition(controller.showPosition);
         } else {
-          console.log("Geolocation is not supported by this browser.");
+            console.log("Geolocation is not supported by this browser.");
         }
     },
     showPosition: function showPosition(position) {
         model.searchLocation = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
         };
         view.initMap();
     },
     createTacoRecipe: function() {
         var getTacoOptions = {
-          dataType: "json",
-          method: "get",
-          url: "http://taco-randomizer.herokuapp.com/random/?full-taco=true"
+            dataType: "json",
+            method: "get",
+            url: "http://taco-randomizer.herokuapp.com/random/?full-taco=true"
         };
 
         $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
@@ -299,7 +295,7 @@ var controller = {
     getSpecificTacoName: function(longName) {
         let endPoint = longName.indexOf(",");
         if (endPoint === -1) {
-          return longName;
+            return longName;
         }
         let shortName = longName.substr(0, endPoint) + " Tacos";
         return shortName;
@@ -309,10 +305,10 @@ var controller = {
         var qArray = data.items;
 
         for (var qI = 0; qI < qArray.length; qI++) {
-          if (qArray[qI].title.indexOf("aco") !== -1) {
-            view.appendImg(ele, qArray[qI].link);
-            return qArray[qI].link;
-          }
+            if (qArray[qI].title.indexOf("aco") !== -1) {
+                view.appendImg(ele, qArray[qI].link);
+                return qArray[qI].link;
+            }
         }
     },
 
