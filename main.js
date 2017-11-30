@@ -2,7 +2,6 @@ $(document).ready(initializeApp);
 
 function initializeApp() {
   view.initiateClickHandlers();
-  controller.getLocation();
 }
 
 //====================================================//
@@ -78,14 +77,11 @@ var model = {
 var view = {
   initiateClickHandlers: function() {
     $(".makeBtn").on("click", this.showRecipeModal);
-    $(".findBtn").on("click", this.showSearchModal);
+    $(".findBtn").on("click", controller.loadSearchTacoModal.bind(controller) );
     $(".recipeModalReturn").on("click", this.hideRecipeModal);
     $(".searchModalReturn").on("click", this.hideSearchModal);
-    $(".recipeModalGetNew").on(
-      "click",
-      controller.createTacoRecipe.bind(controller)
+    $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller)
     );
-    // $(".mapContainer").addClass("loader");
   },
   showRecipeModal: function() {
     $(".recipeModalContainer").css("top", "0");
@@ -145,7 +141,6 @@ var view = {
         location: model.searchLocation,
         radius: 1000,
         keyword: ["taco + restaurant"]
-        // type: ['restaurant'],
       },
       view.callback
     );
@@ -248,21 +243,21 @@ var view = {
 //====================================================//
 
 var controller = {
-  getLocation: function getLocation() {
+    getLocation: function getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(controller.showPosition);
     } else {
       console.log("Geolocation is not supported by this browser.");
     }
-  },
-  showPosition: function showPosition(position) {
+    },
+    showPosition: function showPosition(position) {
     model.searchLocation = {
       lat: position.coords.latitude,
       lng: position.coords.longitude
     };
     view.initMap();
-  },
-  createTacoRecipe: function() {
+    },
+    createTacoRecipe: function() {
     var getTacoOptions = {
       dataType: "json",
       method: "get",
@@ -270,27 +265,27 @@ var controller = {
     };
 
     $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
-  },
+    },
 
-  tacoDataObtained: function(data) {
+    tacoDataObtained: function(data) {
     model.setCurrentTaco(data);
     let tacoName = this.getSpecificTacoName(data.name);
 
     view.changeRecipeModalHeader(tacoName);
     model.imgAPICall(tacoName, $("img"));
     view.changeRecipeModalText(data.recipe);
-  },
+    },
 
-  getSpecificTacoName: function(longName) {
+    getSpecificTacoName: function(longName) {
     let endPoint = longName.indexOf(",");
     if (endPoint === -1) {
       return longName;
     }
     let shortName = longName.substr(0, endPoint) + " Tacos";
     return shortName;
-  },
+    },
 
-  tacoFilter: function(ele, data) {
+    tacoFilter: function(ele, data) {
     var qArray = data.items;
 
     for (var qI = 0; qI < qArray.length; qI++) {
@@ -299,5 +294,10 @@ var controller = {
         return qArray[qI].link;
       }
     }
-  }
+    },
+
+    loadSearchTacoModal: function(){
+        this.getLocation();
+        view.showSearchModal();
+    }
 };
