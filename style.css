@@ -89,25 +89,6 @@ h1, h2, h3, h4, h5, h6, button {
     outline: none;
 }
 
-.makeBtn {
-    border: 6px solid;
-    background-color: #ee6c4b;
-    border-color: #ff2627 #a30000 #a30000 #ff2627;
-}
-
-.makeBtn:active {
-    border-color: #a30000 #ff2627 #ff2627 #a30000;
-}
-
-.findBtn {
-    border: 6px solid;
-    background-color: #84c94b;
-    border-color: #00a400 #007500 #007500 #00a400;
-}
-
-.findBtn:active {
-    border-color: #007500 #00a400 #00a400 #007500;
-}
 .homeContainer > :nth-child(-n+2) {
   display: flex;
   flex-direction: column;
@@ -125,7 +106,7 @@ h1, h2, h3, h4, h5, h6, button {
 }
 .homeContainer > div > h1 {
     margin: auto auto 15%;
-    font-size: 3rem;
+    font-size: 4rem;
     text-shadow: 3px 3px #000000;
     color: #aa6c2b;
 }
@@ -180,23 +161,25 @@ h1, h2, h3, h4, h5, h6, button {
     border: 3px solid;
 }
 
-.recipeModalReturn {
+.recipeModalReturn, .searchModalReturn {
     left: 2%;
     background-color: #ee6c4b;
     border-color: #ff2627 #a30000 #a30000 #ff2627;
-}
-.recipeModalReturn:active {
-  border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 
-.searchModalReturn:active {
-    border-color: #a30000 #ff2627 #ff2627 #a30000;
-}
-.searchModalReturn {
-    width: 96%;
-    left: 2%;
+.makeBtn {
+    border: 6px solid;
     background-color: #ee6c4b;
     border-color: #ff2627 #a30000 #a30000 #ff2627;
+}
+
+.searchModalReturn {
+    width: 96%;
+}
+
+.searchModalReturn:active, .makeBtn:active, .recipeModalReturn:active {
+    background-color: #c36343;
+    border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 
 .recipeModalGetNew {
@@ -205,7 +188,14 @@ h1, h2, h3, h4, h5, h6, button {
     border-color: #00a400 #007500 #007500 #00a400;
 }
 
-.recipeModalGetNew:active {
+.findBtn {
+    border: 6px solid;
+    background-color: #84c94b;
+    border-color: #00a400 #007500 #007500 #00a400;
+}
+
+.recipeModalGetNew:active, .findBtn:active {
+    background-color: #67ab4a;
     border-color: #007500 #00a400 #00a400 #007500;
 }
 
@@ -354,7 +344,13 @@ h1, h2, h3, h4, h5, h6, button {
         font-size: 4vmin;
     }
 
-    .recipeName h2 {
-        font-size: 1.5rem;
+    .homeContainer > div > h1 {
+        font-size: 3rem;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .homeContainer > div > h1 {
+        font-size: 2rem;
     }
 }
