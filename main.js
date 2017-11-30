@@ -97,7 +97,7 @@ var model = {
             model.loc = $('#zipcodeSearch').val();
             model.geocode();
         } else {
-            view.initMap()
+            view.initMap();
         }
         $('.placesList  div').remove();
     }
