@@ -15,6 +15,7 @@
 </head>
 
 <body>
+
     <div class="container">
         <div class="homeContainer">
             <div class="header">
@@ -33,7 +34,7 @@
             </div>
             <div class="recipeImage">
                 <img src="http://2.bp.blogspot.com/-DuBYMKQYAyE/Uxh5uTFhYYI/AAAAAAAAfcM/LPpUi4CjY-4/s800/Chorizo+and+Sweet+Potato+Tacos+with+Apple+and+Pomegranate+Salsa+800+9809.jpg"
-                    alt="image of taco from recipe" width="auto%" height="100%">
+                     alt="image of taco from recipe" width="auto%" height="100%">
             </div>
             <div class="recipeText">
                 <p>Moroccan Lamb\n=============\n\nA Differently Spiced Meat Than Your Usual Taco\n----------------------------------------------/n/n*
@@ -45,13 +46,15 @@
             <button class="ModalButton recipeModalGetNew">Get New Taco</button>
         </div>
     </div>
+
     <div class="searchModalContainer">
         <div class="searchModal">
             <div class="searchName">
                 <h2>Tacos Near You</h2>
             </div>
             <div class="mapContainer">
-                <div id="map"></div>
+                <input id="zipcodeSearch" type="number" placeholder="search by zipcode"><button class="zipcodeBtn">Go</button>
+                <div id="map" draggable="true"></div>
             </div>
             <div class="placesList"></div>
         </div>
