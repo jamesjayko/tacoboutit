@@ -10,16 +10,10 @@ body {
   background-color: purple;
   font-family: "Architects Daughter", cursive;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-button {
+h1, h2, h3, h4, h5, h6, button {
   font-family: "Comfortaa", cursive;
 }
-/******** modal container and content styling *******/
+/******** modal container styling *******/
 
 .container,
 .recipeModalContainer,
@@ -79,6 +73,8 @@ button {
   color: white;
   border-radius: 30px;
 }
+
+/************** modal content styling *************/
 
 .homeContainer > button:focus {
   outline: none;
@@ -157,8 +153,8 @@ button {
   position: absolute;
   bottom: 1%;
   width: 47%;
-  height: 7%;
-  font-size: 1.4rem;
+  height: 12%;
+  font-size: 1.6rem;
   border-radius: 25px;
   border: 3px solid;
 }
