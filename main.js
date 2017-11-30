@@ -130,6 +130,9 @@ var view = {
         $(".recipeModalContainer").css("top", "0");
         view.btnClickSound();
     },
+    flipRecipeModal: function() {
+        $('.recipeModalContainer').css('transform', 'translate(-50%, 0) rotateY(180deg)');
+    },
     hideRecipeModal: function () {
         $(".recipeModalContainer").attr("style", "top: -100");
         view.btnClickSound();
@@ -228,12 +231,26 @@ var view = {
     addRecipeModalLinks: function(linksArray){
         let linkElements = [];
         for (let i=0; i<linksArray.length; i++){
-            let linkElement = $('<a>',{
-                text: "How to make: " + linksArray[i].name,
-                'class': 'recipeLinks'
+            let linkElement = $('<p>',{
+                text: "Recipe for " + linksArray[i].name,
+                'class': 'recipeLinks',
             });
+
+            // using closure to connect the links I'm making with the appropriate recipe object
+
+            (function() {
+                linkElement.on('click', openAndShowComponentRecipe.bind(view) );
+                function openAndShowComponentRecipe() {
+                    this.clearRecipeModalText( $('.recipeTextBack') );
+                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeNameBack h2') );
+                    let gleanedRecipe = controller.gleanRecipe( linksArray[i].recipe );
+                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack') );
+                    this.flipRecipeModal();
+                }
+            })();
+
             linkElements.push(linkElement);
-            console.log(linksArray[i].name);
+
         }
         $('.recipeTextFront').append(linkElements);
     },
