@@ -410,7 +410,6 @@ var controller = {
     //countdown timer from https://www.w3schools.com/howto/howto_js_countdown.asp
     tacoTuesdayCountdown: function (date) {
         if (date.getDay() !== 2) {
-            debugger;
             date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
             // Set the date we're counting down to
             var countDownDate = new Date(date).getTime();
