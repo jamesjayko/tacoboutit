@@ -229,6 +229,8 @@ h1, h2, h3, h4, h5, h6, button {
     height: 100px;
     width: 100%;
     background-color: lightblue;
+    background-color: white;
+    border: 1px solid black;
 }
 
 .image {
