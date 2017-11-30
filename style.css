@@ -153,6 +153,10 @@ h1, h2, h3, h4, h5, h6, button {
     border-radius: 4px;
 }
 
+.recipeLinks {
+
+}
+
 .recipeTextFront, .recipeNameBack {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -175,6 +179,9 @@ h1, h2, h3, h4, h5, h6, button {
     left: 2%;
     background-color: #ee6c4b;
     border-color: #ff2627 #a30000 #a30000 #ff2627;
+}
+.recipeModalReturn:active {
+  border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 
 .searchModalReturn:active {
@@ -229,7 +236,6 @@ h1, h2, h3, h4, h5, h6, button {
     text-align: center;
     height: 100px;
     width: 100%;
-    background-color: lightblue;
     background-color: white;
     border: 1px solid black;
 }

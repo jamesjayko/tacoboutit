@@ -129,7 +129,7 @@ var view = {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 12,
-            gestureHandling: 'greedy'
+            gestureHandling: 'greedy',
             // styles: [
             //     {
             //         featureType: "poi",
@@ -207,9 +207,16 @@ var view = {
         element.empty();
     },
     addRecipeModalLinks: function(linksArray){
+        let linkElements = [];
         for (let i=0; i<linksArray.length; i++){
-            console.log(linksArray[i]);
+            let linkElement = $('<a>',{
+                text: "How to make: " + linksArray[i].name,
+                'class': 'recipeLinks'
+            });
+            linkElements.push(linkElement);
+            console.log(linksArray[i].name);
         }
+        $('.recipeTextFront').append(linkElements);
     },
     addRecipeModalText: function (textArray, element) {
         let textTagsArray = [];
