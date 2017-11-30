@@ -10,18 +10,25 @@ body {
   background-color: purple;
   font-family: "Architects Daughter", cursive;
 }
-h1, h2, h3, h4, h5, h6, button {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
   font-family: "Comfortaa", cursive;
 }
+
 /******** modal container styling *******/
 
 .container,
 .recipeModalContainer,
 .searchModalContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 0;
   left: 50%;
@@ -33,8 +40,8 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .recipeModalContainer {
-    top: -100%;
-    transition: 1s;
+  top: -100%;
+  transition: 1s;
 }
 
 .searchModalContainer {
@@ -45,21 +52,21 @@ h1, h2, h3, h4, h5, h6, button {
 .homeContainer,
 .recipeModal,
 .searchModal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 95%;
-    height: 95%;
-    background-color: tan;
-    border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  height: 95%;
+  background-color: tan;
+  border-radius: 30px;
 }
 
 .homeContainer {
-    justify-content: center;
+  justify-content: center;
 }
 
 .homeContainer > button {
@@ -82,7 +89,7 @@ h1, h2, h3, h4, h5, h6, button {
 
 .makeBtn {
   border: 6px solid;
-  background-color: #ba0000;
+  background-color: #ee6c4b;
   border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
@@ -92,7 +99,7 @@ h1, h2, h3, h4, h5, h6, button {
 
 .findBtn {
   border: 6px solid;
-  background-color: green;
+  background-color: #84c94b;
   border-color: #00a400 #007500 #007500 #00a400;
 }
 
@@ -104,7 +111,11 @@ h1, h2, h3, h4, h5, h6, button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: lavender;
+  background: linear-gradient(
+    140deg,
+    #c9ffbf,
+    #ffafbd
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   width: 90%;
   height: 40%;
   border-radius: 30px;
@@ -161,7 +172,7 @@ h1, h2, h3, h4, h5, h6, button {
 
 .recipeModalReturn {
   left: 2%;
-  background-color: #ba0000;
+  background-color: #ee6c4b;
   border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
@@ -169,14 +180,14 @@ h1, h2, h3, h4, h5, h6, button {
   border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 .searchModalReturn {
-    left: 2%;
-    background-color: #ba0000;
-    border-color: #ff2627 #a30000 #a30000 #ff2627;
+  left: 2%;
+  background-color: #ee6c4b;
+  border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .recipeModalGetNew {
   right: 2%;
-  background-color: green;
+  background-color: #84c94b;
   border-color: #00a400 #007500 #007500 #00a400;
 }
 
@@ -199,78 +210,48 @@ h1, h2, h3, h4, h5, h6, button {
   max-width: 700px;
 }
 
+/*********** loading screen related styling  **********/
 
-/* Optional: Makes the sample page fill the window. */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+.loader {
+  position: absolute;
+  left: 40%;
+  top: 20%;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
 }
-.listContainer {
-    width: 100%;
+.loader > img {
+  width: 100%;
+  height: 100%;
 }
-.listItem {
-    height: 100px;
-    width: 100%;
-    overflow: hidden;
-    background-color: lightblue;
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
-.placesList {
-    margin: 0 !important;
-}
-.image {
-    position: relative;
-    margin-bottom: 0;
-}
-.name {
-    display: inline-block;
-    position: relative;
-    margin: auto;
-    top: -15vh;
-    left: 30%;
-}
-.rating {
-    display: inline-block;
-    position: relative;
-    left: 33%;
-    bottom: 6vh;
-}
-.phoneNumber {
-    display: inline-block;
-    position: relative;
-    top: -12vh;
-    left: 64%;
-}
-.open, .closed {
-    display: inline-block;
-    position: relative;
-    top: -13vh;
-    left: 33%;
-    color: green;
-}
-.closed {
-    color: red;
-}
-.infoBtn {
-    display: inline-block;
-    position: relative;
-    left: 65%;
-    top: -19vh;
-}
-.imgContainer {
-    height: 100px;
-    width: 100px;
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /************** MEDIA QUERIES ************/
 
-
-@media screen and (max-width: 500px){
+@media screen and (max-width: 500px) {
   body {
-      font-size: 4vmin;
+    font-size: 4vmin;
   }
   .recipeName h2 {
     font-size: 1.5rem;
   }
 }
-
