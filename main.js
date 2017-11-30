@@ -2,6 +2,7 @@ $(document).ready( initializeApp );
 
 function initializeApp(){
     // controller.getLocation();
+    view.initiateClickHandlers();
 }
 
 //====================================================//
@@ -22,6 +23,25 @@ var model = {
         var recipeArray = recipe.split('/n');
         console.log(recipeArray);
     },
+    imgAPICall: function(query, ele) {
+        var ajaxOptions = {
+            url: 'https://www.googleapis.com/customsearch/v1',
+            method: "GET",
+            dataType: "JSON",
+            data: {
+                q: query,
+                cx: '000707611873255015719:e0z9hyzysu4',
+                searchType: 'image',
+                key: 'AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM'
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        };
+
+        $.ajax(ajaxOptions).then(controller.tacoFilter.bind(null, ele))
+    }
+
 };
 
 
@@ -31,6 +51,9 @@ var model = {
 
 
 var view = {
+    initiateClickHandlers: function(){
+        $('.recipeModalGetNew').on('click', controller.createTacoRecipe.bind( controller ) )
+    },
     initMap: function() {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
@@ -99,9 +122,15 @@ var view = {
             model.infoWindow.open(model.map, this);
         });
     },
-    changeRecipeModalHeader: function(headerText){
+    changeRecipeModalHeader: function(headerText) {
         $('.recipeName h2').text(headerText);
-    }
+    },
+    appendImg: function(ele, imgLink) {
+        ele.attr('src', imgLink);
+    },
+    changeRecipeModalText: function(text){
+        $('.recipeText').text(text);
+    },
 };
 
 
@@ -133,16 +162,37 @@ var controller = {
             url: 'http://taco-randomizer.herokuapp.com/random/?full-taco=true',
         };
 
-        $.ajax(getTacoOptions).then( controller.tacoDataObtained.bind(model) )
+        $.ajax(getTacoOptions).then( controller.tacoDataObtained.bind(this) )
     },
-    tacoDataObtained: function(data){
+
+    tacoDataObtained: function(data) {
         model.setCurrentTaco(data);
-        model.factorTacoRecipe(data.recipe);
+        let tacoName = this.getSpecificTacoName(data.name);
 
-        view.changeRecipeModalHeader(data.name);
+        view.changeRecipeModalHeader(tacoName);
+        model.imgAPICall(tacoName, $('img'));
+        view.changeRecipeModalText(data.recipe);
+    },
 
-        let tacoRecipe = data.recipe;
-        console.log(tacoRecipe)
+    getSpecificTacoName: function(longName){
+        let endPoint = longName.indexOf(',');
+        if (endPoint === -1){
+            return longName;
+        }
+        let shortName = longName.substr(0, endPoint) + ' Tacos';
+        return shortName;
+    },
+
+    tacoFilter: function(ele, data) {
+        var qArray = data.items;
+
+        for(var qI = 0; qI < qArray.length; qI++) {
+
+            if(qArray[qI].title.indexOf("aco") !== -1) {
+                view.appendImg(ele, qArray[qI].link);
+                return qArray[qI].link;
+            }
+        }
     }
 };
 
