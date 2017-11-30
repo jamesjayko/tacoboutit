@@ -150,38 +150,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
+            // styles: [
+            //     {
+            //         featureType: "poi",
+            //         elementType: "labels",
+            //         stylers: [{ visibility: "off" }]
+            //     },
+            //     {
+            //         featureType: "water",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#84C94B" }]
+            //     },
+            //     {
+            //         featureType: "landscape",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     },
+            //     {
+            //         featureType: "road",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#AA6C2B" }]
+            //     },
+            //     {
+            //         featureType: "transit",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#EE6C4B" }]
+            //     },
+            //     {
+            //         featureType: "poi",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     }
+            // ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -263,9 +263,13 @@ var view = {
                 elementsList.push(imgContainer)
             }
 
-            var name = $('<h2>').text(model.resultsArr[i].name).addClass('name');
-            elementsList.push(name);
-
+            if (model.resultsArr[i].name.length > 24 && model.resultsArr[i].hasOwnProperty('photos')) {
+                var name = $('<h2>').text(model.resultsArr[i].name).addClass('name makeMeSmaller');
+                elementsList.push(name);
+            } else {
+                var name = $('<h2>').text(model.resultsArr[i].name).addClass('name');
+                elementsList.push(name);
+            }
             if (model.resultsArr[i].hasOwnProperty('rating')) {
                 var rating = $('<div>').text(model.resultsArr[i].rating).addClass('rating');
                 elementsList.push(rating)
@@ -288,7 +292,7 @@ var view = {
                 var openQuery = $('<h4>').text(insert).addClass(insert.toLowerCase());
                 elementsList.push(openQuery)
             }
-            var directionsLink = $('<h3>')
+            var directionsLink = $('<h3>');
             var link = $('<a>').attr('href', 'https://www.google.com/maps/place/?q=place_id:' + model.resultsArr[i].place_id).text('Get Directions');
             $(directionsLink).append(link);
 

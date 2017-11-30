@@ -339,6 +339,9 @@ button {
   border: none;
   border-radius: 10px;
 }
+.makeMeSmaller {
+    font-size: .8rem;
+}
 
 /*********** loading screen related styling  **********/
 
