@@ -139,7 +139,6 @@ var controller = {
     },
 
     tacoFilter: function(ele, data) {
-        debugger;
         var qArray = data.items;
 
         for(var qI = 0; qI < qArray.length; qI++) {
@@ -150,7 +149,6 @@ var controller = {
             }
         }
     }
-
 };
 
 
