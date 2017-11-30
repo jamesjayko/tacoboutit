@@ -111,18 +111,27 @@ var view = {
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);
     },
+    btnClickSound: function () {
+        var crunchSound = new Audio("sounds/crunch_sound.mp3");
+        crunchSound.play();
+    },
     showRecipeModal: function () {
         $(".recipeModalContainer").css("top", "0");
+        view.btnClickSound();
     },
     hideRecipeModal: function () {
         $(".recipeModalContainer").attr("style", "top: -100");
+        view.btnClickSound();
     },
     showSearchModal: function () {
         $(".searchModalContainer").css("top", "0");
+        view.btnClickSound();
     },
     hideSearchModal: function () {
         $(".searchModalContainer").attr("style", "top: -100");
+        view.btnClickSound();
     },
+    
     initMap: function () {
         // model.searchLocation = {lat: 33.6509, lng: -117.7441};
         model.map = new google.maps.Map(document.getElementById('map'), {
