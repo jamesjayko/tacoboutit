@@ -171,8 +171,8 @@ var view = {
         model.service.nearbySearch({
             location: model.searchLocation,
             radius: 1000,
-            keyword: ['taco + restaurant'],
-            // type: ['restaurant'],
+            keyword: ('taco+mexican'),
+            type: ('restaurant'),
         }, view.callback);
 
     },
