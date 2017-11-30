@@ -149,7 +149,7 @@ h1, h2, h3, h4, h5, h6, button {
   padding: 15px;
 }
 
-.recipeModalButton {
+.ModalButton {
   position: absolute;
   bottom: 1%;
   width: 47%;
@@ -165,8 +165,13 @@ h1, h2, h3, h4, h5, h6, button {
   border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
-.recipeModalReturn:active {
+.searchModalReturn:active {
   border-color: #a30000 #ff2627 #ff2627 #a30000;
+}
+.searchModalReturn {
+    left: 2%;
+    background-color: #ba0000;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .recipeModalGetNew {
