@@ -125,6 +125,7 @@ var view = {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 15,
+            gestureHandling: 'greedy'
             // styles: [
             //     {
             //         featureType: "poi",
@@ -201,7 +202,6 @@ var view = {
         $(".recipeText").html(text);
     },
     initList: function () {
-        debugger;
         for (var i = 0; i < model.resultsArr.length; i++) {
             var elementsList = [];
 
