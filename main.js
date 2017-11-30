@@ -2,6 +2,7 @@ $(document).ready(initializeApp);
 
 
 function initializeApp() {
+    controller.getLocation();
     view.initiateClickHandlers();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
@@ -75,7 +76,7 @@ var model = {
         }, 500);
     },
     loc: null,
-    searchRadius: 1200,
+    searchRadius: 3000,
     geocode: function() {
         $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + model.loc + '&key=AIzaSyDmBiq2uv9zLd2A1G5KwCbSaUYhMwO6mJg',
@@ -120,7 +121,7 @@ var view = {
         $(".recipeModalReturn").on("click", this.hideRecipeModal);
         $(".searchModalReturn").on("click", this.hideSearchModal);
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
-        $('.zipcodeBtn').on('click', model.handleZipcodeInput);
+        $('.zipcodeBtn').on('click', model.handleZipcodeInput);    
     },
     btnClickSound: function () {
         var crunchSound = new Audio("sounds/crunch_sound.mp3");
@@ -152,38 +153,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            // styles: [
-            //     {
-            //         featureType: "poi",
-            //         elementType: "labels",
-            //         stylers: [{ visibility: "off" }]
-            //     },
-            //     {
-            //         featureType: "water",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#84C94B" }]
-            //     },
-            //     {
-            //         featureType: "landscape",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     },
-            //     {
-            //         featureType: "road",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#AA6C2B" }]
-            //     },
-            //     {
-            //         featureType: "transit",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#EE6C4B" }]
-            //     },
-            //     {
-            //         featureType: "poi",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     }
-            // ]
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{ color: "#84C94B" }]
+                },
+                {
+                    featureType: "landscape",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{ color: "#AA6C2B" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{ color: "#EE6C4B" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                }
+            ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -201,7 +202,6 @@ var view = {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
                 view.createMarker(results[i]);
-
             }
         }
     },
@@ -213,7 +213,8 @@ var view = {
             icon: "images/taco_purp_marker.png",
             class: "marker"
         });
-
+        $(".mapContainer > .loader").remove();
+        
         google.maps.event.addListener(marker, "click", function () {
             model.infoWindow.setContent(place.name);
             model.infoWindow.open(model.map, this);
@@ -286,12 +287,15 @@ var view = {
                 var rating = $('<div>').text(model.resultsArr[i].rating).addClass('rating');
                 elementsList.push(rating)
             }
-
-            if (model.resultsArr[i].simonsData.hasOwnProperty('formatted_phone_number')) {
-                var phoneNumber = $('<h4>').text(model.resultsArr[i].simonsData.formatted_phone_number).addClass('phoneNumber');
+            if (model.resultsArr[i].hasOwnProperty('simonsData')) {
+                if (model.resultsArr[i].simonsData.hasOwnProperty('formatted_phone_number')) {
+                    var phoneNumber = $('<h4>').text(model.resultsArr[i].simonsData.formatted_phone_number).addClass('phoneNumber');
+                    elementsList.push(phoneNumber);
+                }
+            } else {
+                var phoneNumber = $('<h4>').addClass('phoneNumber');
                 elementsList.push(phoneNumber);
             }
-
             if (model.resultsArr[i].hasOwnProperty('opening_hours')) {
                 if (model.resultsArr[i].opening_hours.open_now) {
                     var insert = 'Open';
@@ -301,8 +305,15 @@ var view = {
                 var openQuery = $('<h4>').text(insert).addClass(insert.toLowerCase());
                 elementsList.push(openQuery)
             }
+            var directionsLink = $('<h3>');
+            var link = $('<a>').attr('href', 'https://www.google.com/maps/place/?q=place_id:' + model.resultsArr[i].place_id).text('Get Directions');
+            $(directionsLink).append(link);
+
+            elementsList.push(directionsLink);
+
             if (elementsList.length > 1) {
                 $(newDiv).append(elementsList);
+                $(".placesList > .loader").remove();                
                 $('.placesList').append(newDiv);
             }
 
@@ -310,7 +321,7 @@ var view = {
     },
     tacoTuesdayTimer: function(d, h, m, s) {
         $("#tacoTuesday").empty();
-        let timer = "taco tuesday: " + d + "d " + h + "h " + m + "m " + s + "s";
+        let timer =  d + "d " + h + "h " + m + "m " + s + "s" + " 'til Taco Tuesday";
         $("#tacoTuesday").append(timer);
     },
     tacoTuesdayAnnounce: function(str) {
@@ -420,7 +431,7 @@ var controller = {
     },
 
     loadSearchTacoModal: function(){
-        this.getLocation();
+        // this.getLocation();
         view.showSearchModal();
     },
 
@@ -428,6 +439,7 @@ var controller = {
     tacoTuesdayCountdown: function (date) {
         if (date.getDay() !== 2) {
             date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
+            date.setHours(0,0,0)
             // Set the date we're counting down to
             var countDownDate = new Date(date).getTime();
             // Update the count down every 1 second
