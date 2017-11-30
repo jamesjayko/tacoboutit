@@ -39,7 +39,7 @@ var model = {
             }
         };
 
-        $.ajax(ajaxOptions).then(controller.tacoFilter.bind(null, ele));
+        $.ajax(ajaxOptions).then(controller.tacoImageFilter.bind(null, ele));
     },
     getPlaceDetails: function() {
         var first = true;
@@ -189,22 +189,27 @@ var view = {
             model.infoWindow.open(model.map, this);
         });
     },
-    changeRecipeModalHeader: function (headerText) {
-        $(".recipeName h2").text(headerText);
+    changeRecipeModalHeader: function (headerText, element) {
+        element.text(headerText);
     },
     appendImg: function (ele, imgLink) {
         ele.attr("src", imgLink);
     },
-    clearRecipeModalText: function(){
-        $(".recipeText").empty();
+    clearRecipeModalText: function(element){
+        element.empty();
     },
-    addRecipeModalText: function (textArray) {
+    addRecipeModalLinks: function(linksArray){
+        for (let i=0; i<linksArray.length; i++){
+            console.log(linksArray[i]);
+        }
+    },
+    addRecipeModalText: function (textArray, element) {
         let textTagsArray = [];
         for (let i=0; i<textArray.length; i++) {
             let textNode = $('<p>').text(textArray[i]);
             textTagsArray.push(textNode);
         }
-        $(".recipeText").append(textTagsArray);
+        element.append(textTagsArray);
     },
     initList: function () {
         for (var i = 0; i < model.resultsArr.length; i++) {
@@ -294,11 +299,26 @@ var controller = {
         model.setCurrentTaco(data);
         let tacoName = this.getSpecificTacoName(data.name);
         let gleanedRecipe = this.gleanRecipe(data.recipe);
+        let layersArray = [];
 
-        view.changeRecipeModalHeader(tacoName);
+        view.changeRecipeModalHeader(tacoName, $('.recipeNameFront h2'));
         // model.imgAPICall(tacoName, $("img"));
-        view.clearRecipeModalText();
-        view.addRecipeModalText(gleanedRecipe);
+        view.clearRecipeModalText( $('.recipeTextFront') );
+
+        if (data.base_layer){
+            layersArray.push(data.base_layer);
+        }
+        if (data.condiment){
+            layersArray.push(data.condiment)
+        }
+        if (data.mixin){
+            layersArray.push(data.mixin)
+        }
+        if (data.shell){
+            layersArray.push(data.shell)
+        }
+        view.addRecipeModalLinks(layersArray);
+        view.addRecipeModalText(gleanedRecipe, $('.recipeTextFront'));
     },
 
     getSpecificTacoName: function(longName) {
@@ -310,7 +330,7 @@ var controller = {
         return shortName;
     },
 
-    tacoFilter: function(ele, data) {
+    tacoImageFilter: function(ele, data) {
         var qArray = data.items;
 
         for (var qI = 0; qI < qArray.length; qI++) {
