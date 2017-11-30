@@ -72,6 +72,7 @@ button {
 .recipeModalBack {
   transform: rotateY(180deg) translate(-50%, -50%);
   transform-origin: left;
+    display: none;
 }
 
 .homeContainer {
@@ -185,11 +186,10 @@ button {
   border: 3px solid;
 }
 
-.recipeModalReturn,
-.searchModalReturn {
-  left: 2%;
-  background-color: #ee6c4b;
-  border-color: #ff2627 #a30000 #a30000 #ff2627;
+.searchModalReturn, .recipeModalReturn, .recipeModalFrontHome {
+    left: 2%;
+    background-color: #ee6c4b;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .makeBtn {
@@ -204,15 +204,17 @@ button {
 
 .searchModalReturn:active,
 .makeBtn:active,
+.recipeModalFrontHome:active,
 .recipeModalReturn:active {
   background-color: #c36343;
   border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 
-.recipeModalGetNew {
-  right: 2%;
-  background-color: #84c94b;
-  border-color: #00a400 #007500 #007500 #00a400;
+.recipeModalGetNew,
+.recipeModalBackHome {
+    right: 2%;
+    background-color: #84c94b;
+    border-color: #00a400 #007500 #007500 #00a400;
 }
 
 .findBtn {
@@ -222,7 +224,8 @@ button {
 }
 
 .recipeModalGetNew:active,
-.findBtn:active {
+.findBtn:active,
+.recipeModalBackHome:active {
   background-color: #67ab4a;
   border-color: #007500 #00a400 #00a400 #007500;
 }
