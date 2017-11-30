@@ -20,23 +20,23 @@ h1, h2, h3, h4, h5, h6, button {
 .container,
 .recipeModalContainer,
 .searchModalContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  width: 500px;
-  max-width: 100%;
-  height: 100%;
-  min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 500px;
+    max-width: 100%;
+    height: 100%;
+    min-height: 500px;
 }
 
 .recipeModalContainer {
-  top: -100%;
-  transition: 1s;
+    top: -100%;
+    transition: 1s;
 }
 
 .searchModalContainer {
@@ -47,21 +47,21 @@ h1, h2, h3, h4, h5, h6, button {
 .homeContainer,
 .recipeModal,
 .searchModal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95%;
-  height: 95%;
-  background-color: tan;
-  border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 95%;
+    background-color: tan;
+    border-radius: 30px;
 }
 
 .homeContainer {
-  justify-content: center;
+    justify-content: center;
 }
 
 .homeContainer > button {
@@ -83,9 +83,9 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .makeBtn {
-  border: 6px solid;
-  background-color: #ee6c4b;
-  border-color: #ff2627 #a30000 #a30000 #ff2627;
+    border: 6px solid;
+    background-color: #ee6c4b;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .makeBtn:active {
@@ -93,23 +93,23 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .findBtn {
-  border: 6px solid;
-  background-color: #84c94b;
-  border-color: #00a400 #007500 #007500 #00a400;
+    border: 6px solid;
+    background-color: #84c94b;
+    border-color: #00a400 #007500 #007500 #00a400;
 }
 
 .findBtn:active {
     border-color: #007500 #00a400 #00a400 #007500;
 }
 .homeContainer > div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(140deg, #c9ffbf, #ffafbd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  width: 90%;
-  height: 40%;
-  border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(140deg, #c9ffbf, #ffafbd); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 90%;
+    height: 40%;
+    border-radius: 30px;
 }
 .homeContainer > div > h1 {
     margin: auto auto 15%;
@@ -162,24 +162,24 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .recipeModalReturn {
-  left: 2%;
-  background-color: #ee6c4b;
-  border-color: #ff2627 #a30000 #a30000 #ff2627;
+    left: 2%;
+    background-color: #ee6c4b;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .searchModalReturn:active {
     border-color: #a30000 #ff2627 #ff2627 #a30000;
 }
 .searchModalReturn {
-  left: 2%;
-  background-color: #ee6c4b;
-  border-color: #ff2627 #a30000 #a30000 #ff2627;
+    left: 2%;
+    background-color: #ee6c4b;
+    border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .recipeModalGetNew {
-  right: 2%;
-  background-color: #84c94b;
-  border-color: #00a400 #007500 #007500 #00a400;
+    right: 2%;
+    background-color: #84c94b;
+    border-color: #00a400 #007500 #007500 #00a400;
 }
 
 .recipeModalGetNew:active {
@@ -197,9 +197,9 @@ h1, h2, h3, h4, h5, h6, button {
     width: 100%;
 }
 #map {
-  height: 100%;
-  width: 100%;
-  max-width: 700px;
+    height: 100%;
+    width: 100%;
+    max-width: 700px;
 }
 
 
@@ -230,7 +230,7 @@ h1, h2, h3, h4, h5, h6, button {
     margin: 0;
     padding: 10px;
 }
- {
+{
 }
 .phoneNumber, .rating, .open, .closed, .infoBtn {
     padding: 5px;
@@ -241,29 +241,29 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 .closed {
-  color: red;
+    color: red;
 }
 
 
 .loader {
-  position: absolute;
-  left: 40%;
-  top: 20%;
-  z-index: 1;
-  width: 100px;
-  height: 100px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 .loader > img {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 .imgContainer {
-  float: left;
-  height: 100px;
-  width: 100px;
+    float: left;
+    height: 100px;
+    width: 100px;
 }
 
 #zipcodeSearch {
@@ -294,22 +294,22 @@ h1, h2, h3, h4, h5, h6, button {
 /************** ANIMATIONS ************/
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /************** MEDIA QUERIES ************/
 
 @media screen and (max-width: 500px) {
-  body {
-    font-size: 4vmin;
-  }
+    body {
+        font-size: 4vmin;
+    }
 
-  .recipeName h2 {
-    font-size: 1.5rem;
-  }
+    .recipeName h2 {
+        font-size: 1.5rem;
+    }
 }
