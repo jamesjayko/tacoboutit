@@ -306,13 +306,28 @@ h1, h2, h3, h4, h5, h6, button {
 }
 
 
-#zipcodeSearch {
+#zipcodeSearch, #searchRadiusInput {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 10;
+    margin-top: 3%;
+    width: 31%;
     background-color: rgba(255,255,255, 0.9);
     border: none;
     padding: 6px;
 }
+#searchRadiusInput {
+    left: 77%;
+    width: 20%;
+}
 .zipcodeBtn {
     margin-left: 1vh;
+    position: absolute;
+    z-index: 9;
+    left: 92%;
+    transform: translate(-50%);
+    margin-top: 4.5%;
     color: white;
     background-color: green;
     border: none;
