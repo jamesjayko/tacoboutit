@@ -1,6 +1,6 @@
 #map {
-    height: 500px;
-    width: 700px;
+    height: 40%;
+    width: 100%;
     margin: auto;
 }
 /* Optional: Makes the sample page fill the window. */
@@ -8,4 +8,59 @@ html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+.listContainer {
+    width: 100%;
+}
+.listItem {
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+    background-color: lightblue;
+}
+.placesList {
+    margin: 0 !important;
+}
+.image {
+    position: relative;
+    margin-bottom: 0;
+}
+.name {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    top: -15vh;
+    left: 30%;
+}
+.rating {
+    display: inline-block;
+    position: relative;
+    left: 33%;
+    bottom: 6vh;
+}
+.phoneNumber {
+    display: inline-block;
+    position: relative;
+    top: -12vh;
+    left: 64%;
+}
+.open, .closed {
+    display: inline-block;
+    position: relative;
+    top: -13vh;
+    left: 33%;
+    color: green;
+}
+.closed {
+    color: red;
+}
+.infoBtn {
+    display: inline-block;
+    position: relative;
+    left: 65%;
+    top: -19vh;
+}
+.imgContainer {
+    height: 100px;
+    width: 100px;
 }
