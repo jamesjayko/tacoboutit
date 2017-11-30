@@ -14,6 +14,27 @@ var model = {
     infoWindow: null,
     resultsArr: null,
     searchLocation: null,
+
+    imgAPICall: function(query, ele) {
+        var ajaxOptions = {
+            url: 'https://www.googleapis.com/customsearch/v1',
+            method: "GET",
+            dataType: "JSON",
+            data: {
+                q: query,
+                cx: '000707611873255015719:e0z9hyzysu4',
+                searchType: 'image',
+                key: 'AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM'
+            },
+            error: function(data) {
+                console.log(data);
+            }
+        };
+
+    $.ajax(ajaxOptions).then(controller.tacoFilter.bind(null, ele))
+    }
+
+
 };
 
 
@@ -91,6 +112,10 @@ var view = {
             model.infoWindow.open(model.map, this);
         });
     },
+
+    appendImg: function(ele, imgLink) {
+        ele.attr('src', imgLink);
+    }
 };
 
 
@@ -111,7 +136,21 @@ var controller = {
         model.searchLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
         console.log(model.searchLocation);
         view.initMap();
+    },
+
+    tacoFilter: function(ele, data) {
+        debugger;
+        var qArray = data.items;
+
+        for(var qI = 0; qI < qArray.length; qI++) {
+
+            if(qArray[qI].title.indexOf("aco") !== -1) {
+                view.appendImg(ele, qArray[qI].link);
+                return qArray[qI].link;
+            }
+        }
     }
+
 };
 
 
