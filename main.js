@@ -181,7 +181,7 @@ var view = {
             location: model.searchLocation,
             radius: 1500,
             keyword: ('taco+mexican'),
-            type: ('restaurant'),
+            type: ('restaurant')
         }, view.callback);
     },
     callback: function (results, status) {
