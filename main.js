@@ -2,6 +2,7 @@ $(document).ready(initializeApp);
 
 
 function initializeApp() {
+    controller.getLocation();
     view.initiateClickHandlers();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
@@ -269,12 +270,15 @@ var view = {
                 var rating = $('<div>').text(model.resultsArr[i].rating).addClass('rating');
                 elementsList.push(rating)
             }
-
-            if (model.resultsArr[i].simonsData.hasOwnProperty('formatted_phone_number')) {
-                var phoneNumber = $('<h4>').text(model.resultsArr[i].simonsData.formatted_phone_number).addClass('phoneNumber');
+            if (model.resultsArr[i].hasOwnProperty('simonsData')) {
+                if (model.resultsArr[i].simonsData.hasOwnProperty('formatted_phone_number')) {
+                    var phoneNumber = $('<h4>').text(model.resultsArr[i].simonsData.formatted_phone_number).addClass('phoneNumber');
+                    elementsList.push(phoneNumber);
+                }
+            } else {
+                var phoneNumber = $('<h4>').addClass('phoneNumber');
                 elementsList.push(phoneNumber);
             }
-
             if (model.resultsArr[i].hasOwnProperty('opening_hours')) {
                 if (model.resultsArr[i].opening_hours.open_now) {
                     var insert = 'Open';
@@ -284,6 +288,12 @@ var view = {
                 var openQuery = $('<h4>').text(insert).addClass(insert.toLowerCase());
                 elementsList.push(openQuery)
             }
+            var directionsLink = $('<h3>')
+            var link = $('<a>').attr('href', 'https://www.google.com/maps/place/?q=place_id:' + model.resultsArr[i].place_id).text('Get Directions');
+            $(directionsLink).append(link);
+
+            elementsList.push(directionsLink);
+
             if (elementsList.length > 1) {
                 $(newDiv).append(elementsList);
                 $('.placesList').append(newDiv);
@@ -403,7 +413,7 @@ var controller = {
     },
 
     loadSearchTacoModal: function(){
-        this.getLocation();
+        // this.getLocation();
         view.showSearchModal();
     },
 
