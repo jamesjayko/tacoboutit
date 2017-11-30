@@ -16,59 +16,72 @@
 
 <body>
 
-<div class="container">
-    <div class="homeContainer">
-        <div class="header">
-            <img src="images/tacos_logo.png" alt="">
-            <h1>Taco'bout It!</h1>
-        </div>
-        <div id="tacoTuesday"></div>
-        <button class="makeBtn">Make It!</button>
-        <button class="findBtn">Find It!</button>
-    </div>
-</div>
-<div class="recipeModalContainer">
-    <div class="recipeModalBack">
-        <div class="recipeNameBack">
-            <h2></h2>
-        </div>
-        <div class="recipeTextBack"></div>
-        <button class="ModalButton recipeModalReturn">Return</button>
-    </div>
-    <div class="recipeModalFront">
-        <div class="recipeNameFront">
-            <h2></h2>
-        </div>
-        <div class="recipeImage">
-            <img src="http://2.bp.blogspot.com/-DuBYMKQYAyE/Uxh5uTFhYYI/AAAAAAAAfcM/LPpUi4CjY-4/s800/Chorizo+and+Sweet+Potato+Tacos+with+Apple+and+Pomegranate+Salsa+800+9809.jpg"
-                 alt="image of taco from recipe" width="auto%" height="100%">
-        </div>
-        <div class="recipeTextFront"></div>
-        <button class="ModalButton recipeModalReturn">Home</button>
-        <button class="ModalButton recipeModalGetNew">Get New Taco</button>
-    </div>
-</div>
-
-<div class="searchModalContainer">
-    <div class="searchModal">
-        <div class="searchName">
-            <h2>Tacos Near You</h2>
-        </div>
-        <div class="mapContainer">
-            <div id="map"></div>
-        </div>
-            <div class="inputContainer">
-            <input id="zipcodeSearch" type="number" placeholder="search by zipcode">
-            
-            <input id="searchRadiusInput" type="number" placeholder="1200"><button class="zipcodeBtn">Go</button>
-            
+    <div class="container">
+        <div class="homeContainer">
+            <div class="header">
+                <img src="images/tacos_logo.png" alt="">
+                <h1>Taco'bout It!</h1>
             </div>
-        <div class="placesList"></div>
-        <button class="ModalButton searchModalReturn">Home</button>
+            <div id="tacoTuesday"></div>
+            <button class="makeBtn">Make It!</button>
+            <button class="findBtn">Find It!</button>
+        </div>
     </div>
-</div>
+    <div class="recipeModalContainer">
+        <div class="recipeModalBack">
+            <div class="recipeNameBack">
+                <h2></h2>
+            </div>
+            <div class="recipeTextBack"></div>
+            <button class="ModalButton recipeModalReturn">Return</button>
+        </div>
+        <div class="recipeModalFront">
+            <div class="recipeNameFront">
+                <h2></h2>
+            </div>
+            <div class="recipeImage">
+                <img src="http://2.bp.blogspot.com/-DuBYMKQYAyE/Uxh5uTFhYYI/AAAAAAAAfcM/LPpUi4CjY-4/s800/Chorizo+and+Sweet+Potato+Tacos+with+Apple+and+Pomegranate+Salsa+800+9809.jpg"
+                    alt="image of taco from recipe" width="auto%" height="100%">
+            </div>
+            <div class="recipeTextFront"></div>
+            <button class="ModalButton recipeModalReturn">Home</button>
+            <button class="ModalButton recipeModalGetNew">Get New Taco</button>
+        </div>
+    </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9zxeNdRlMgwNUuz7cG9d0kl73hKFQW0&libraries=places" async defer></script>
+    <div class="searchModalContainer">
+        <div class="searchModal">
+            <div class="searchName">
+                <h2>Tacos Near You</h2>
+            </div>
+            <div class="mapContainer">
+                <div class="loader">
+                    <img src="images/taco_cat.gif" alt="">
+                    <img src="images/taco_load.png" alt="">                    
+                </div>
+                <div id="map"></div>
+            </div>
+            <div class="inputContainer">
+                <input id="zipcodeSearch" type="number" placeholder="search by zipcode">
+
+                <input id="searchRadiusInput" type="number" placeholder="3000">
+                <button class="zipcodeBtn">Go</button>
+
+            </div>
+            <div class="placesList">
+                <div class="loader">
+                    <img src="images/taco_cat.gif" alt="">
+                    <img src="images/taco_load.png" alt="">
+                    
+                </div>
+            </div>
+
+            <button class="ModalButton searchModalReturn">Home</button>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-9zxeNdRlMgwNUuz7cG9d0kl73hKFQW0&libraries=places" async
+        defer></script>
 </body>
 
 </html>

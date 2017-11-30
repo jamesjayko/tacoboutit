@@ -75,7 +75,7 @@ var model = {
         }, 500);
     },
     loc: null,
-    searchRadius: 1200,
+    searchRadius: 3000,
     geocode: function() {
         $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + model.loc + '&key=AIzaSyDmBiq2uv9zLd2A1G5KwCbSaUYhMwO6mJg',
@@ -120,7 +120,7 @@ var view = {
         $(".recipeModalReturn").on("click", this.hideRecipeModal);
         $(".searchModalReturn").on("click", this.hideSearchModal);
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
-        $('.zipcodeBtn').on('click', model.handleZipcodeInput);
+        $('.zipcodeBtn').on('click', model.handleZipcodeInput);    
     },
     btnClickSound: function () {
         var crunchSound = new Audio("sounds/crunch_sound.mp3");
@@ -198,7 +198,6 @@ var view = {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
                 view.createMarker(results[i]);
-
             }
         }
     },
@@ -210,7 +209,8 @@ var view = {
             icon: "images/taco_purp_marker.png",
             class: "marker"
         });
-
+        $(".mapContainer > .loader").remove();
+        
         google.maps.event.addListener(marker, "click", function () {
             model.infoWindow.setContent(place.name);
             model.infoWindow.open(model.map, this);
@@ -286,6 +286,7 @@ var view = {
             }
             if (elementsList.length > 1) {
                 $(newDiv).append(elementsList);
+                $(".placesList > .loader").remove();                
                 $('.placesList').append(newDiv);
             }
 
