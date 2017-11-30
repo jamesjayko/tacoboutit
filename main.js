@@ -49,22 +49,27 @@ var model = {
         function scrapePlaceDetails() {
             model.service.getDetails(
                 {
-                    placeId: model.resultsArr[model.i].place_id
+                    placeId: model.resultsArr[model.i].place_id,
                 },
                 function(place, status) {
+                    console.log(place);
                     model.resultsArr[model.i].simonsData = place;
-                    model.i++;
+                    if (model.i === model.resultsArr.length - 1) {
+                        clearInterval(int);
+                        view.initList();
+                    }
                 }
             );
         }
         var int = setInterval(function() {
+            model.i++;
             if (first) {
                 first = false;
+                model.i = 0;
                 scrapePlaceDetails();
             } else if (model.i > model.resultsArr.length - 1) {
                 model.i = 0;
-                clearInterval(int);
-                view.initList();
+
             } else {
                 scrapePlaceDetails();
             }
@@ -87,6 +92,7 @@ var model = {
         })
     },
     handleZipcodeInput: function() {
+        $('.placesList  div').remove();
         model.loc = $('#zipcodeSearch').val();
         model.geocode();
     }
@@ -121,7 +127,7 @@ var view = {
         $(".searchModalContainer").attr("style", "top: -100");
     },
     initMap: function () {
-        // model.searchLocation = {lat: 33.6509, lng: -117.7441};
+        model.searchLocation = {lat: 33.6509, lng: -117.7441};
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 15,
@@ -171,6 +177,7 @@ var view = {
     },
     callback: function (results, status) {
         model.resultsArr = results;
+        model.getPlaceDetails();
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             for (var i = 0; i < results.length; i++) {
                 view.createMarker(results[i]);
@@ -202,6 +209,7 @@ var view = {
         $(".recipeText").html(text);
     },
     initList: function () {
+        console.log(model.resultsArr);
         for (var i = 0; i < model.resultsArr.length; i++) {
             var elementsList = [];
 
@@ -209,7 +217,7 @@ var view = {
 
             if (model.resultsArr[i].hasOwnProperty('photos')) {
                 var imgContainer = $('<div>').addClass('imgContainer');
-                var img = $('<img>').attr('src', model.resultsArr[i].simonsData.photos[0].getUrl({
+                var img = $('<img>').attr('src', model.resultsArr[i].photos[0].getUrl({
                     'maxWidth': 100,
                     'maxHeight': 100
                 })).addClass('image');
@@ -243,6 +251,7 @@ var view = {
                 $(newDiv).append(elementsList);
                 $('.placesList').append(newDiv);
             }
+
         }
     },
 };
