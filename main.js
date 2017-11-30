@@ -3,6 +3,7 @@ $(document).ready(initializeApp);
 
 function initializeApp() {
     view.initiateClickHandlers();
+    controller.tacoTuesdayCountdown(model.currentDate);
 }
 
 //====================================================//
@@ -18,6 +19,7 @@ var model = {
     resultsArr: null,
     searchLocation: null,
     service: null,
+    currentDate: new Date(),
 
     setCurrentTaco: function(data) {
         this.currentTaco = data;
@@ -251,6 +253,12 @@ var view = {
 
         }
     },
+    tacoTuesdayTimer: function(d, h, m, s) {
+
+    },
+    tacoTuesdayAnnounce: function(str) {
+
+    }
 };
 
 //====================================================//
@@ -325,5 +333,31 @@ var controller = {
     loadSearchTacoModal: function(){
         this.getLocation();
         view.showSearchModal();
+    },
+    //countdown timer from https://www.w3schools.com/howto/howto_js_countdown.asp
+    tacoTuesdayCountdown: function(date) {
+        if (date.getDay() !== 2) {
+            debugger;
+            date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
+            // Set the date we're counting down to
+            var countDownDate = new Date(date).getTime();
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+                // Get todays date and time
+                var now = new Date().getTime();
+                // Find the distance between now an the count down date
+                var distance = countDownDate - now;
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                // Output the result
+                view.tacoTuesdayTimer(days, hours, minutes, seconds);
+            }, 1000);
+        } else {
+            view.tacoTuesdayAnnounce("IT'S TACO TUESDAY!");
+        }
+
     }
 };
