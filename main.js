@@ -292,10 +292,13 @@ var view = {
         }
     },
     tacoTuesdayTimer: function(d, h, m, s) {
-
+        $("#tacoTuesday").empty();
+        let timer = "taco tuesday: " + d + "d " + h + "h " + m + "m " + s + "s";
+        $("#tacoTuesday").append(timer);
     },
     tacoTuesdayAnnounce: function(str) {
-
+        $("#tacoTuesday").empty();
+        $("#tacoTuesday").text(str);
     }
 };
 
@@ -403,8 +406,9 @@ var controller = {
         this.getLocation();
         view.showSearchModal();
     },
+
     //countdown timer from https://www.w3schools.com/howto/howto_js_countdown.asp
-    tacoTuesdayCountdown: function(date) {
+    tacoTuesdayCountdown: function (date) {
         if (date.getDay() !== 2) {
             debugger;
             date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
