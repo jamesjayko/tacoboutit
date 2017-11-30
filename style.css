@@ -11,7 +11,8 @@ body {
   font-family: "Architects Daughter", cursive;
 }
 h1, h2, h3, h4, h5, h6, button {
-  font-family: "Comfortaa", cursive;
+    margin: 0;
+    font-family: "Comfortaa", cursive;
 }
 /******** modal container styling *******/
 
@@ -201,63 +202,54 @@ h1, h2, h3, h4, h5, h6, button {
 
 
 /* Optional: Makes the sample page fill the window. */
-html, body {
-    height: 100%;
+
+.placesList {
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
     margin: 0;
-    padding: 0;
 }
+
+.placesList::-webkit-scrollbar {
+    width: 10px;
+    height: 25px;
+    border-radius: 2px;
+    color: green;
+}
+
 .listContainer {
     width: 100%;
 }
 .listItem {
+    text-align: center;
     height: 100px;
+    min-height: auto;
     width: 100%;
-    overflow: hidden;
     background-color: lightblue;
 }
-.placesList {
-    margin: 0 !important;
-}
+
 .image {
-    position: relative;
     margin-bottom: 0;
 }
 .name {
-    display: inline-block;
-    position: relative;
-    margin: auto;
-    top: -15vh;
-    left: 30%;
+    font-size: 1.2rem;
+    margin: 0;
+    padding: 10px;
 }
-.rating {
-    display: inline-block;
-    position: relative;
-    left: 33%;
-    bottom: 6vh;
+ {
 }
-.phoneNumber {
+.phoneNumber, .rating, .open, .closed, .infoBtn {
+    padding: 5px;
     display: inline-block;
-    position: relative;
-    top: -12vh;
-    left: 64%;
 }
-.open, .closed {
-    display: inline-block;
-    position: relative;
-    top: -13vh;
-    left: 33%;
+.open {
     color: green;
 }
 .closed {
     color: red;
 }
-.infoBtn {
-    display: inline-block;
-    position: relative;
-    left: 65%;
-    top: -19vh;
-}
 .imgContainer {
+    float: left;
     height: 100px;
     width: 100px;
 }

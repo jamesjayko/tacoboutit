@@ -1,7 +1,6 @@
 $(document).ready( initializeApp );
 
 function initializeApp(){
-    // controller.getLocation();
     view.initiateClickHandlers();
     controller.getLocation();
 }
@@ -148,7 +147,6 @@ var view = {
             location: model.searchLocation,
             radius: 1000,
             keyword: ['taco + restaurant'],
-            // type: ['restaurant'],
         }, view.callback);
 
     },
@@ -186,20 +184,30 @@ var view = {
     },
     initList: function() {
         for (var i=0; i<model.resultsArr.length; i++) {
+            var elementsList = [];
+
             var newDiv = $('<div>').addClass('listItem');
-            var imgContainer = $('<div>').addClass('imgContainer');
+
             if (model.resultsArr[i].hasOwnProperty('photos')) {
+                var imgContainer = $('<div>').addClass('imgContainer');
                 var img = $('<img>').attr('src', model.resultsArr[i].simonsData.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})).addClass('image');
-            } else {
-                var img = $('<img>').attr('src', '#');
+                imgContainer.append(img);
+                elementsList.push(imgContainer)
             }
+
             var name = $('<h2>').text(model.resultsArr[i].name).addClass('name');
+            elementsList.push(name);
+
             if (model.resultsArr[i].hasOwnProperty('rating')) {
                 var rating = $('<div>').text(model.resultsArr[i].rating).addClass('rating');
-            } else {
-                var rating = $('<div>').text('not available').addClass('rating');
+                elementsList.push(rating)
             }
-            var phoneNumber = $('<h4>').text(model.resultsArr[i].simonsData.formatted_phone_number).addClass('phoneNumber');
+
+            if (model.resultsArr[i].simonsData.hasOwnProperty('formatted_phone_number')) {
+                var phoneNumber = $('<h4>').text(model.resultsArr[i].simonsData.formatted_phone_number).addClass('phoneNumber');
+                elementsList.push(phoneNumber);
+            }
+
             if (model.resultsArr[i].hasOwnProperty('opening_hours')) {
                 if (model.resultsArr[i].opening_hours.open_now) {
                     var insert = 'Open';
@@ -207,14 +215,12 @@ var view = {
                     var insert = 'Closed';
                 }
                 var openQuery = $('<h4>').text(insert).addClass(insert.toLowerCase());
+                elementsList.push(openQuery)
             }
-            else {
-                var openQuery = $('<h4>').text('not available');
+            if (elementsList.length > 1){
+                $(newDiv).append(elementsList);
+                $('.placesList').append(newDiv);
             }
-            var infoBtn = $('<button>').text('more info').addClass('infoBtn');
-            $(imgContainer).append(img)
-            $(newDiv).append(imgContainer, name, rating, phoneNumber, openQuery, infoBtn);
-            $('.placesList').append(newDiv);
         }
     }
 };
