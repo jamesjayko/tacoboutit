@@ -84,7 +84,24 @@ var model = {
 
 var view = {
     initiateClickHandlers: function(){
-        $('.recipeModalGetNew').on('click', controller.createTacoRecipe.bind( controller ) )
+        $(".makeBtn").on('click', this.showRecipeModal );
+        $(".findBtn").on('click', this.showSearchModal );    
+        $(".recipeModalReturn").on('click', this.hideRecipeModal );
+        $(".searchModalReturn").on('click', this.hideSearchModal );  
+        $('.recipeModalGetNew').on('click', controller.createTacoRecipe.bind( controller ) );
+
+    },
+    showRecipeModal: function() {
+        $(".recipeModalContainer").css("top", "0");
+    },
+    hideRecipeModal: function() {
+        $(".recipeModalContainer").attr("style", "top: -100");
+    },
+    showSearchModal: function() {
+        $(".searchModalContainer").css("top", "0");
+    },
+    hideSearchModal: function() {
+        $(".searchModalContainer").attr("style", "top: -100");
     },
     initMap: function() {
         model.searchLocation = {lat: 33.6509, lng: -117.7441};
