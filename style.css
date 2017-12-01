@@ -21,18 +21,6 @@ button {
   font-family: "Comfortaa", cursive;
 }
 
-.tc_homepage {
-    height: 37%;
-    position: absolute;
-    top: 29%;
-    left: 11%;
-}
-
-.logoHomepage {
-    height: 50%;
-    width: 50%
-}
-
 /******** modal container styling *******/
 
 .container,
