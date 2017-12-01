@@ -184,38 +184,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            // styles: [
-            //     {
-            //         featureType: "poi",
-            //         elementType: "labels",
-            //         stylers: [{ visibility: "off" }]
-            //     },
-            //     {
-            //         featureType: "water",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#84C94B" }]
-            //     },
-            //     {
-            //         featureType: "landscape",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     },
-            //     {
-            //         featureType: "road",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#AA6C2B" }]
-            //     },
-            //     {
-            //         featureType: "transit",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#EE6C4B" }]
-            //     },
-            //     {
-            //         featureType: "poi",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     }
-            // ]
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{ color: "#84C94B" }]
+                },
+                {
+                    featureType: "landscape",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{ color: "#AA6C2B" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{ color: "#EE6C4B" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                }
+            ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -410,7 +410,7 @@ var controller = {
         let layersArray = [];
 
         view.changeRecipeModalHeader(tacoName, $('.recipeNameFront h2'));
-        // model.imgAPICall(tacoName, $("img"));
+        model.imgAPICall(tacoName, $(".recipeImage img"));
         view.clearRecipeModalText( $('.recipeTextFront') );
 
         if (data.base_layer){
