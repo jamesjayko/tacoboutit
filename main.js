@@ -117,6 +117,7 @@ var view = {
         $(".searchModalReturn").on("click", this.hideSearchModal);
         $(".recipeModalReturn").on("click", this.flipRecipeModalToFront );
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
+        $('.modalButton').on('click', this.btnClickSound);
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);
         $('#homeImg').on('click', this.fadeout);
     },
@@ -151,14 +152,12 @@ var view = {
     },
     hideRecipeModal: function () {
         $(".recipeModalContainer").attr("style", "top: -100%");
-        view.btnClickSound();
     },
     hideRecipeModalBack: function(){
         $(".recipeModalContainer").css({
                 top: '-100%',
                 transform: 'translate(-50%, 0) rotateY(180deg)'
             });
-        view.btnClickSound();
     },
     showSearchModal: function () {
         $(".searchModalContainer").css("top", "0");
@@ -166,7 +165,6 @@ var view = {
     },
     hideSearchModal: function () {
         $(".searchModalContainer").attr("style", "top: -100");
-        view.btnClickSound();
     },
     
     initMap: function () {
