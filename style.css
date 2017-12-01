@@ -76,7 +76,7 @@ button {
   transform: translate(-50%, -50%);
   width: 95%;
   height: 95%;
-  background-color: tan;
+  background-color: rgb(252, 221, 164);
   border-radius: 30px;
 }
 
@@ -118,6 +118,8 @@ button {
   border-radius: 30px;
 }
 .homeContainer > :nth-child(2) {
+    background: linear-gradient(140deg, #ffafbd, #c9ffbf);
+    
   margin-top: 3vh;
   width: 90%;
   height: 5%;
@@ -350,6 +352,9 @@ button {
   background-color: green;
   border: none;
   border-radius: 10px;
+}
+.makeMeSmaller {
+    font-size: .8rem;
 }
 
 .movingLogo {
