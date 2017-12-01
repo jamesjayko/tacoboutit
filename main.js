@@ -4,6 +4,7 @@ $(document).ready(initializeApp);
 function initializeApp() {
     controller.getLocation();
     view.initiateClickHandlers();
+    view.openingSong();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
 }
@@ -115,13 +116,25 @@ var model = {
 //====================================================//
 
 var view = {
+    openSong: new Audio("sounds/raining_taco_song.mp3"),
+
     initiateClickHandlers: function () {
         $(".makeBtn").on("click", this.showRecipeModal);
         $(".findBtn").on("click", controller.loadSearchTacoModal.bind(controller));
-        $(".recipeModalReturn").on("click", this.hideRecipeModal);
+        $(".recipeModalFrontHome").on("click", this.hideRecipeModal);
+        $(".recipeModalBackHome").on("click", this.hideRecipeModalBack);
         $(".searchModalReturn").on("click", this.hideSearchModal);
+        $(".recipeModalReturn").on("click", this.flipRecipeModalToFront );
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
-        $('.zipcodeBtn').on('click', model.handleZipcodeInput);    
+        $('.zipcodeBtn').on('click', model.handleZipcodeInput);
+        $('#homeImg').on('click', this.fadeout);
+    },
+    openingSong: function() {
+        view.openSong.play();
+    },
+    fadeout: function() {
+        view.openSong.pause();
+        $("#homeSplash").fadeOut();
     },
     btnClickSound: function () {
         var crunchSound = new Audio("sounds/crunch_sound.mp3");
@@ -131,8 +144,29 @@ var view = {
         $(".recipeModalContainer").css("top", "0");
         view.btnClickSound();
     },
+    flipRecipeModalToFront: function(){
+        $('.recipeModalContainer').css('transform', 'translate(-50%, 0) rotateY(0deg)');
+        $('.recipeModalFront').show();
+        setTimeout( function(){
+            $('.recipeModalBack').hide();
+        }, 500)
+    },
+    flipRecipeModalToBack: function() {
+        $('.recipeModalContainer').css('transform', 'translate(-50%, 0) rotateY(180deg)');
+        $('.recipeModalBack').show();
+        setTimeout( function(){
+            $('.recipeModalFront').hide();
+        }, 500)
+    },
     hideRecipeModal: function () {
-        $(".recipeModalContainer").attr("style", "top: -100");
+        $(".recipeModalContainer").attr("style", "top: -100%");
+        view.btnClickSound();
+    },
+    hideRecipeModalBack: function(){
+        $(".recipeModalContainer").css({
+                top: '-100%',
+                transform: 'translate(-50%, 0) rotateY(180deg)'
+            });
         view.btnClickSound();
     },
     showSearchModal: function () {
@@ -229,12 +263,26 @@ var view = {
     addRecipeModalLinks: function(linksArray){
         let linkElements = [];
         for (let i=0; i<linksArray.length; i++){
-            let linkElement = $('<a>',{
-                text: "How to make: " + linksArray[i].name,
-                'class': 'recipeLinks'
+            let linkElement = $('<p>',{
+                text: "Recipe for " + linksArray[i].name,
+                'class': 'recipeLinks',
             });
+
+            // using closure to connect the links I'm making with the appropriate recipe object
+
+            (function() {
+                linkElement.on('click', openAndShowComponentRecipe.bind(view) );
+                function openAndShowComponentRecipe() {
+                    this.clearRecipeModalText( $('.recipeTextBack') );
+                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeNameBack h2') );
+                    let gleanedRecipe = controller.gleanRecipe( linksArray[i].recipe );
+                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack') );
+                    this.flipRecipeModalToBack();
+                }
+            })();
+
             linkElements.push(linkElement);
-            console.log(linksArray[i].name);
+
         }
         $('.recipeTextFront').append(linkElements);
     },
