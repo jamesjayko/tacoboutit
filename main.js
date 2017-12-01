@@ -122,6 +122,18 @@ var view = {
         $(".searchModalReturn").on("click", this.hideSearchModal);
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);    
+        $('#homeImg').on('click', this.fadeout);  
+        view.openingSong();  
+    },
+
+    openSong: new Audio("sounds/raining_taco_song.mp3"),
+
+    openingSong: function() {
+        view.openSong.play();
+    },
+    fadeout: function() {
+        view.openSong.pause();
+        $("#homeSplash").fadeOut();
     },
     btnClickSound: function () {
         var crunchSound = new Audio("sounds/crunch_sound.mp3");
