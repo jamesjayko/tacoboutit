@@ -15,10 +15,7 @@ function initializeApp() {
 
 
 var model = {
-   i: 0,
-    // currentTaco: null,
     i: 0,
-    // map: null,
     infoWindow: null,
     resultsArr: null,
     searchLocation: null,
@@ -259,9 +256,7 @@ var view = {
                 text: "Recipe for " + linksArray[i].name,
                 'class': 'recipeLinks',
             });
-
             // using closure to connect the links I'm making with the appropriate recipe object
-
             (function() {
                 linkElement.on('click', openAndShowComponentRecipe.bind(view) );
                 function openAndShowComponentRecipe() {
@@ -365,7 +360,7 @@ var controller = {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(controller.showPosition);
         } else {
-            console.log("Geolocation is not supported by this browser.");
+            //Geolocation is not supported by this browser, pull up a modal?
         }
     },
     showPosition: function(position) {
