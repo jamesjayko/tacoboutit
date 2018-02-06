@@ -23,6 +23,7 @@ var model = {
     currentDate: new Date(),
     loc: null,
     searchRadius: 3000,
+    playSounds: true,
 
     imgAPICall: function(query, ele) {
         var ajaxOptions = {
@@ -120,6 +121,17 @@ var view = {
         $('.modalButton').on('click', this.btnClickSound);
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);
         $('#homeImg').on('click', this.fadeout);
+        $('.sfxBtn').on('click', this.toggleSounds);
+    },
+    toggleSounds: function() {
+        let btnText = $('.sfxBtn');
+        if ($(btnText).text() === 'sounds: on') {
+            $(btnText).text('sounds: off');
+            model.playSounds = false;
+        } else {
+            $(btnText).text('sounds: on');
+            model.playSounds = true;
+        }
     },
     openingSong: function() {
         view.openSong.play();
@@ -129,8 +141,10 @@ var view = {
         $("#homeSplash").fadeOut();
     },
     btnClickSound: function () {
-        var crunchSound = new Audio("sounds/crunch_sound.mp3");
-        crunchSound.play();
+        if (model.playSounds) {
+            var crunchSound = new Audio("sounds/crunch_sound.mp3");
+            crunchSound.play();
+        }
     },
     showRecipeModal: function () {
         $(".recipeModalContainer").css("top", "0");
