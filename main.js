@@ -51,6 +51,7 @@ var model = {
                     placeId: model.resultsArr[model.i].place_id,
                 },
                 function(place) {
+                    console.log(place);
                     model.resultsArr[model.i].simonsData = place;
                     if (model.i === model.resultsArr.length - 1) {
                         clearInterval(int);
@@ -67,10 +68,10 @@ var model = {
                 getAdditionalPlaceDetails();
             } else if (model.i > model.resultsArr.length - 1) {
                 model.i = 0;
-//test for necessity
             } else {
                 getAdditionalPlaceDetails();
             }
+
         }, 500);
     },
     geocode: function() {
@@ -81,6 +82,7 @@ var model = {
             dataType: 'json',
             success: function (success) {
                 model.searchLocation = success.results[0].geometry.location;
+                console.log(model.searchLocation);
                 view.initMap();
             },
             error: function (error) {
@@ -186,39 +188,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            //Play around with styles on the map here
-            // styles: [
-            //     {
-            //         featureType: "poi",
-            //         elementType: "labels",
-            //         stylers: [{ visibility: "off" }]
-            //     },
-            //     {
-            //         featureType: "water",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#84C94B" }]
-            //     },
-            //     {
-            //         featureType: "landscape",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     },
-            //     {
-            //         featureType: "road",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#AA6C2B" }]
-            //     },
-            //     {
-            //         featureType: "transit",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#EE6C4B" }]
-            //     },
-            //     {
-            //         featureType: "poi",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     }
-            // ]
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{ color: "#84C94B" }]
+                },
+                {
+                    featureType: "landscape",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{ color: "#AA6C2B" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{ color: "#EE6C4B" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                }
+            ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -240,6 +241,7 @@ var view = {
         }
     },
     createMarker: function createMarker(place) {
+        // var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: model.map,
             position: place.geometry.location,
@@ -283,7 +285,7 @@ var view = {
             linkElements.push(linkElement);
 
         }
-        $('.recipeTextFront').append(linkElements);
+        $('.recipeTextFront p').append(linkElements);
     },
     addRecipeModalText: function (textArray, element) {
         let textTagsArray = [];
@@ -305,16 +307,9 @@ var view = {
                     'maxWidth': 100,
                     'maxHeight': 100
                 })).addClass('image');
-            } else {
-                //no photo insert default photo
-                var imgContainer = $('<div>').addClass('imgContainer');
-                var img = $('<img>').attr('src', './images/taco_default2.jpg').css({
-                    'maxWidth': 100,
-                    'maxHeight': 100
-                }).addClass('image');
+                imgContainer.append(img);
+                elementsList.push(imgContainer)
             }
-            imgContainer.append(img);
-            elementsList.push(imgContainer)
 
             if (model.resultsArr[i].name.length > 24 && model.resultsArr[i].hasOwnProperty('photos')) {
                 var name = $('<h2>').text(model.resultsArr[i].name).addClass('name makeMeSmaller');
@@ -399,28 +394,29 @@ var controller = {
         $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
     },
     tacoDataObtained: function(data) {
+        debugger;
         let tacoName = this.getSpecificTacoName(data.name);
         let gleanedRecipe = this.gleanRecipe(data.recipe);
         let layersArray = [];
 
-        view.changeRecipeModalHeader(tacoName, $('.recipeNameFront h2'));
+        view.changeRecipeModalHeader(tacoName, $('.recipeTextFront h2'));
         model.imgAPICall(tacoName, $(".recipeImage img"));
-        view.clearRecipeModalText( $('.recipeTextFront') );
+        view.clearRecipeModalText( $('.recipeTextFront p'));
 
         if (data.base_layer){
             layersArray.push(data.base_layer);
         }
         if (data.condiment){
-            layersArray.push(data.condiment)
+            layersArray.push(data.condiment);
         }
         if (data.mixin){
-            layersArray.push(data.mixin)
+            layersArray.push(data.mixin);
         }
         if (data.shell){
-            layersArray.push(data.shell)
+            layersArray.push(data.shell);
         }
         view.addRecipeModalLinks(layersArray);
-        view.addRecipeModalText(gleanedRecipe, $('.recipeTextFront'));
+        view.addRecipeModalText(gleanedRecipe, $('.recipeTextFront > p'));
     },
 
     getSpecificTacoName: function(longName) {
