@@ -50,7 +50,6 @@ var model = {
                     placeId: model.resultsArr[model.i].place_id,
                 },
                 function(place) {
-                    console.log(place);
                     model.resultsArr[model.i].simonsData = place;
                     if (model.i === model.resultsArr.length - 1) {
                         clearInterval(int);
@@ -81,7 +80,6 @@ var model = {
             dataType: 'json',
             success: function (success) {
                 model.searchLocation = success.results[0].geometry.location;
-                console.log(model.searchLocation);
                 view.initMap();
             },
             error: function (error) {
@@ -174,38 +172,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
+            // styles: [
+            //     {
+            //         featureType: "poi",
+            //         elementType: "labels",
+            //         stylers: [{ visibility: "off" }]
+            //     },
+            //     {
+            //         featureType: "water",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#84C94B" }]
+            //     },
+            //     {
+            //         featureType: "landscape",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     },
+            //     {
+            //         featureType: "road",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#AA6C2B" }]
+            //     },
+            //     {
+            //         featureType: "transit",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#EE6C4B" }]
+            //     },
+            //     {
+            //         featureType: "poi",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     }
+            // ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
