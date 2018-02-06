@@ -126,12 +126,14 @@ var view = {
         $('.sfxBtn').on('click', this.toggleSounds);
     },
     toggleSounds: function() {
-        let btnText = $('.sfxBtn');
-        if ($(btnText).text() === 'sounds: on') {
-            $(btnText).text('sounds: off');
+        // let btnText = $('.sfxBtn');
+        if (model.playSounds) {
+            $('.sfxBtn').empty();   
+            $('.sfxBtn').append('<i class="fas fa-volume-off"></i>');
             model.playSounds = false;
         } else {
-            $(btnText).text('sounds: on');
+            $('.sfxBtn').empty();            
+            $('.sfxBtn').append('<i class="fas fa-volume-up"></i>');
             model.playSounds = true;
         }
     },
