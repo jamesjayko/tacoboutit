@@ -162,6 +162,7 @@ input#zipcodeSearch, input#searchRadiusInput {
 }
 
 .recipeImage {
+  margin-top: 10%;
   height: 25%;
 }
 
@@ -184,11 +185,14 @@ input#zipcodeSearch, input#searchRadiusInput {
 }
 
 .recipeTextFront, .recipeTextBack {
-    overflow-x: hidden;
     overflow-y: scroll;
     width: 95%;
-    height: 50%;
     padding: 15px;
+}
+
+.recipeTextFront {
+  height: 52%;
+  margin: 10px;
 }
 
 .recipeTextBack {
