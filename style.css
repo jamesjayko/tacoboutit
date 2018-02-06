@@ -20,29 +20,36 @@ button {
   margin: 0;
   font-family: "Comfortaa", cursive;
 }
-button:hover, a:hover, p.recipeLinks:hover {
-    cursor: pointer;
+button:hover,
+a:hover,
+p.recipeLinks:hover {
+  cursor: pointer;
 }
-input:focus, button:focus, p:focus {
-    outline: none;
+input:focus,
+button:focus,
+p:focus {
+  outline: none;
 }
-input#zipcodeSearch, input#searchRadiusInput {
-    border: 1px solid black;
-    border-radius: 10px;
+input#zipcodeSearch,
+input#searchRadiusInput {
+  border: 1px solid black;
+  border-radius: 10px;
 }
-button.sfxBtn {
-    width: 84px;
-    height: 34px;
-    z-index: 100;
-    position: relative;
-    bottom: 42%;
-    left: -29%;
-    border-radius: 10px;
+.sfxBtn {
+  width: 10%;
+  /* height: 10%; */
+  z-index: 100;
+  position: relative;
+  bottom: 39%;
+  left: 34%;
+  text-align: center;
+  color: #613f19;
+  /* border-radius: 10px;
     border: 1px solid black;
     background-color: white;
     color: black;
     font-size: 12px;
-    font-weight: bolder;
+    font-weight: bolder; */
 }
 /******** modal container styling *******/
 
@@ -64,13 +71,13 @@ button.sfxBtn {
 }
 
 #homeSplash {
-    z-index: 100;
-    background-color: pink;
+  z-index: 100;
+  background-color: pink;
 }
 
 #homeImg > img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .recipeModalContainer {
@@ -99,13 +106,13 @@ button.sfxBtn {
   height: 95%;
   background-color: rgb(252, 221, 164);
   border-radius: 30px;
-    box-shadow: 0 5px 15px black;
+  box-shadow: 0 5px 15px black;
 }
 
 .recipeModalBack {
   transform: rotateY(180deg) translate(-50%, -50%);
   transform-origin: left;
-    display: none;
+  display: none;
 }
 
 .homeContainer {
@@ -141,8 +148,8 @@ button.sfxBtn {
   border-radius: 30px;
 }
 .homeContainer > :nth-child(2) {
-    background: linear-gradient(140deg, #ffafbd, #c9ffbf);
-    
+  background: linear-gradient(140deg, #ffafbd, #c9ffbf);
+
   margin-top: 3vh;
   width: 90%;
   height: 10%;
@@ -154,7 +161,7 @@ button.sfxBtn {
   margin: auto auto;
   font-size: 8vmin;
   color: #aa6c2b;
-  font-family: 'Syncopate', sans-serif;
+  font-family: "Syncopate", sans-serif;
 }
 .homeContainer > div > img {
   margin-top: 10%;
@@ -171,11 +178,12 @@ button.sfxBtn {
   justify-content: center;
 }
 
-.recipeNameFront h2, .recipeNameBack h2 {
-    margin: 0;
-    padding: 15px;
-    font-size: 2.5rem;
-    text-align: center;
+.recipeNameFront h2,
+.recipeNameBack h2 {
+  margin: 0;
+  padding: 15px;
+  font-size: 2.5rem;
+  text-align: center;
 }
 
 .recipeImage {
@@ -189,22 +197,23 @@ button.sfxBtn {
 }
 
 .recipeLinks {
-    display: block;
-    margin: 0;
-    font-size: 1.4rem;
-    color: purple;
-    text-decoration: underline;
+  display: block;
+  margin: 0;
+  font-size: 1.4rem;
+  color: purple;
+  text-decoration: underline;
 }
 
 .recipeLinks:hover {
-    color: #c100c1;
-    cursor: default;
+  color: #c100c1;
+  cursor: default;
 }
 
-.recipeTextFront, .recipeTextBack {
-    overflow-y: scroll;
-    width: 95%;
-    padding: 15px;
+.recipeTextFront,
+.recipeTextBack {
+  overflow-y: scroll;
+  width: 95%;
+  padding: 15px;
 }
 
 .recipeTextFront {
@@ -213,7 +222,7 @@ button.sfxBtn {
 }
 
 .recipeTextBack {
-    height: 70%;
+  height: 70%;
 }
 
 .modalButton {
@@ -226,10 +235,12 @@ button.sfxBtn {
   border: 3px solid;
 }
 
-.searchModalReturn, .recipeModalReturn, .recipeModalFrontHome {
-    left: 2%;
-    background-color: #ee6c4b;
-    border-color: #ff2627 #a30000 #a30000 #ff2627;
+.searchModalReturn,
+.recipeModalReturn,
+.recipeModalFrontHome {
+  left: 2%;
+  background-color: #ee6c4b;
+  border-color: #ff2627 #a30000 #a30000 #ff2627;
 }
 
 .makeBtn {
@@ -253,14 +264,14 @@ button.sfxBtn {
 .makeBtn:hover,
 .recipeModalFrontHome:hover,
 .recipeModalReturn:hover {
-    background-color: #c36343;
+  background-color: #c36343;
 }
 
 .recipeModalGetNew,
 .recipeModalBackHome {
-    right: 2%;
-    background-color: #84c94b;
-    border-color: #00a400 #007500 #007500 #00a400;
+  right: 2%;
+  background-color: #84c94b;
+  border-color: #00a400 #007500 #007500 #00a400;
 }
 
 .findBtn {
@@ -278,10 +289,12 @@ button.sfxBtn {
 .recipeModalGetNew:hover,
 .findBtn:hover,
 .recipeModalBackHome:hover {
-    background-color: #67ab4a;
+  background-color: #67ab4a;
 }
 
-.modalButton:focus, .makeBtn, .findBtn {
+.modalButton:focus,
+.makeBtn,
+.findBtn {
   outline: none;
 }
 
@@ -411,15 +424,14 @@ button.sfxBtn {
   width: 25%;
 }
 .makeMeSmaller {
-    font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .movingLogo {
-    position: relative;
-    top: 0;
-    left: 0;
+  position: relative;
+  top: 0;
+  left: 0;
 }
-
 
 /*********** loading screen related styling  **********/
 
@@ -437,25 +449,27 @@ button.sfxBtn {
 /************** MEDIA QUERIES ************/
 
 @media screen and (max-width: 500px) {
-    body {
-        font-size: 4vmin;
-    }
+  body {
+    font-size: 4vmin;
+  }
 
-    .homeContainer > div > h1 {
-        font-size: 8vmin;
-    }
+  .homeContainer > div > h1 {
+    font-size: 8vmin;
+  }
 
-    .recipeNameFront h2, .recipeNameBack h2 {
-        font-size: 2rem;
-    }
+  .recipeNameFront h2,
+  .recipeNameBack h2 {
+    font-size: 2rem;
+  }
 }
 
-@media screen and (max-width: 380px){
-    .homeContainer > div > h1 {
-        font-size: 2rem;
-    }
+@media screen and (max-width: 380px) {
+  .homeContainer > div > h1 {
+    font-size: 2rem;
+  }
 
-    .recipeNameFront h2, .recipeNameBack h2 {
-        font-size: 1.5rem;
-    }
+  .recipeNameFront h2,
+  .recipeNameBack h2 {
+    font-size: 1.5rem;
+  }
 }
