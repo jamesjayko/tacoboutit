@@ -10,7 +10,7 @@ body {
   background-color: purple;
   font-family: "Architects Daughter", cursive;
 }
-h1,
+
 h2,
 h3,
 h4,
@@ -23,6 +23,7 @@ button {
 button:hover, a:hover, p.recipeLinks:hover {
     cursor: pointer;
 }
+
 /******** modal container styling *******/
 
 .container,
@@ -116,7 +117,7 @@ button:hover, a:hover, p.recipeLinks:hover {
   justify-content: center;
   background: linear-gradient(140deg, #c9ffbf, #ffafbd);
   width: 90%;
-  height: 40%;
+  height: 30%;
   border-radius: 30px;
 }
 .homeContainer > :nth-child(2) {
@@ -124,13 +125,16 @@ button:hover, a:hover, p.recipeLinks:hover {
     
   margin-top: 3vh;
   width: 90%;
-  height: 5%;
+  height: 10%;
 }
+/* #header{
+  display: block;
+} */
 .homeContainer > div > h1 {
-  margin: auto auto 15%;
-  font-size: 4rem;
-  text-shadow: 3px 3px #000000;
+  margin: auto auto;
+  font-size: 8vmin;
   color: #aa6c2b;
+  font-family: 'Syncopate', sans-serif;
 }
 .homeContainer > div > img {
   margin-top: 10%;
@@ -414,7 +418,7 @@ button:hover, a:hover, p.recipeLinks:hover {
     }
 
     .homeContainer > div > h1 {
-        font-size: 3rem;
+        font-size: 8vmin;
     }
 
     .recipeNameFront h2, .recipeNameBack h2 {
