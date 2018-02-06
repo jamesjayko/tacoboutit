@@ -292,9 +292,16 @@ var view = {
                     'maxWidth': 100,
                     'maxHeight': 100
                 })).addClass('image');
-                imgContainer.append(img);
-                elementsList.push(imgContainer)
+            } else {
+                //no photo insert default photo
+                var imgContainer = $('<div>').addClass('imgContainer');
+                var img = $('<img>').attr('src', './images/taco_default2.jpg').css({
+                    'maxWidth': 100,
+                    'maxHeight': 100
+                }).addClass('image');
             }
+            imgContainer.append(img);
+            elementsList.push(imgContainer)
 
             if (model.resultsArr[i].name.length > 24 && model.resultsArr[i].hasOwnProperty('photos')) {
                 var name = $('<h2>').text(model.resultsArr[i].name).addClass('name makeMeSmaller');
