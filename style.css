@@ -378,6 +378,7 @@ button {
   background-color: green;
   border: none;
   border-radius: 10px;
+  width: 25%;
 }
 .makeMeSmaller {
     font-size: .8rem;
