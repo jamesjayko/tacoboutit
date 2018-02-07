@@ -34,7 +34,7 @@ var model = {
                 q: query,
                 cx: "000707611873255015719:e0z9hyzysu4",
                 searchType: "image",
-                key: "AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM"
+                key: "AIzaSyDI49X7IObH6sgXDPUK5uSEBf2EWdCmrHc"
             },
             error: function(data) {
                 console.log(data);
