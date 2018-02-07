@@ -81,13 +81,13 @@ input#searchRadiusInput {
 } */
 
 .recipeModalContainer {
-  top: -100%;
+  top: -250%;
   transition: 1s;
   transform-style: preserve-3d;
 }
 
 .searchModalContainer {
-  top: -100%;
+  top: -250%;
   transition: 1s;
 }
 
