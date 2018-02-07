@@ -147,6 +147,7 @@ input#searchRadiusInput {
   height: 30%;
   border-radius: 30px;
 }
+
 .homeContainer > :nth-child(2) {
   background: linear-gradient(140deg, #ffafbd, #c9ffbf);
 
