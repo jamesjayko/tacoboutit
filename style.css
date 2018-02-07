@@ -70,15 +70,15 @@ input#searchRadiusInput {
   min-height: 500px;
 }
 
-#homeSplash {
+/* #homeSplash {
   z-index: 100;
   background-color: pink;
-}
+} */
 
-#homeImg > img {
+/* #homeImg > img {
   width: 100%;
   height: 100%;
-}
+} */
 
 .recipeModalContainer {
   top: -100%;

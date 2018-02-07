@@ -4,7 +4,7 @@ $(document).ready(initializeApp);
 function initializeApp() {
     controller.getLocation();
     view.initiateClickHandlers();
-    view.openingSong();
+    // view.openingSong();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
 }
@@ -110,7 +110,7 @@ var model = {
 //====================================================//
 
 var view = {
-    openSong: new Audio("sounds/raining_taco_song.mp3"),
+    // openSong: new Audio("sounds/raining_taco_song.mp3"),
 
     initiateClickHandlers: function () {
         $(".makeBtn").on("click", this.showRecipeModal);
@@ -137,13 +137,13 @@ var view = {
             model.playSounds = true;
         }
     },
-    openingSong: function() {
-        view.openSong.play();
-    },
-    fadeout: function() {
-        view.openSong.pause();
-        $("#homeSplash").fadeOut();
-    },
+    // openingSong: function() {
+    //     view.openSong.play();
+    // },
+    // fadeout: function() {
+    //     view.openSong.pause();
+    //     $("#homeSplash").fadeOut();
+    // },
     btnClickSound: function () {
         if (model.playSounds) {
             var crunchSound = new Audio("sounds/crunch_sound.mp3");
