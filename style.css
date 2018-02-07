@@ -142,7 +142,7 @@ input#searchRadiusInput {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(140deg, #c9ffbf, #ffafbd);
+  background: linear-gradient(140deg, #ffffff, rgb(252, 221, 164));
   width: 90%;
   height: 30%;
   border-radius: 30px;
@@ -159,7 +159,7 @@ input#searchRadiusInput {
 } */
 .homeContainer > div > h1 {
   margin: auto auto;
-  font-size: 8vmin;
+  font-size: 6vmin;
   color: #aa6c2b;
   font-family: "Syncopate", sans-serif;
 }
