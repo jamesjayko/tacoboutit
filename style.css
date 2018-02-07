@@ -81,13 +81,13 @@ input#searchRadiusInput {
 } */
 
 .recipeModalContainer {
-  top: -100%;
+  top: -250%;
   transition: 1s;
   transform-style: preserve-3d;
 }
 
 .searchModalContainer {
-  top: -100%;
+  top: -250%;
   transition: 1s;
 }
 
@@ -147,6 +147,7 @@ input#searchRadiusInput {
   height: 30%;
   border-radius: 30px;
 }
+
 .homeContainer > :nth-child(2) {
   background: linear-gradient(140deg, #ffafbd, #c9ffbf);
 
