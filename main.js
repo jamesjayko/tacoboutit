@@ -190,38 +190,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
+            // styles: [
+            //     {
+            //         featureType: "poi",
+            //         elementType: "labels",
+            //         stylers: [{ visibility: "off" }]
+            //     },
+            //     {
+            //         featureType: "water",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#84C94B" }]
+            //     },
+            //     {
+            //         featureType: "landscape",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     },
+            //     {
+            //         featureType: "road",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#AA6C2B" }]
+            //     },
+            //     {
+            //         featureType: "transit",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#EE6C4B" }]
+            //     },
+            //     {
+            //         featureType: "poi",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     }
+            // ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -309,10 +309,16 @@ var view = {
                     'maxWidth': 100,
                     'maxHeight': 100
                 })).addClass('image');
-                imgContainer.append(img);
-                elementsList.push(imgContainer)
-            }
 
+            } else {
+                var imgContainer = $('<div>').addClass('imgContainer');
+                var img = $('<img>').attr('src', './images/taco_default2.jpg').css({
+                    'maxWidth': 100,
+                    'maxHeight': 100
+                }).addClass('image');
+            }
+            imgContainer.append(img);
+            elementsList.push(imgContainer);
             if (model.resultsArr[i].name.length > 24 && model.resultsArr[i].hasOwnProperty('photos')) {
                 var name = $('<h2>').text(model.resultsArr[i].name).addClass('name makeMeSmaller');
                 elementsList.push(name);
