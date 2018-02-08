@@ -4,7 +4,7 @@ $(document).ready(initializeApp);
 function initializeApp() {
     controller.getLocation();
     view.initiateClickHandlers();
-    view.openingSong();
+    // view.openingSong();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
 }
@@ -34,7 +34,7 @@ var model = {
                 q: query,
                 cx: "000707611873255015719:e0z9hyzysu4",
                 searchType: "image",
-                key: "AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM"
+                key: "AIzaSyDI49X7IObH6sgXDPUK5uSEBf2EWdCmrHc"
             },
             error: function(data) {
                 console.log(data);
@@ -110,7 +110,7 @@ var model = {
 //====================================================//
 
 var view = {
-    openSong: new Audio("sounds/raining_taco_song.mp3"),
+    // openSong: new Audio("sounds/raining_taco_song.mp3"),
 
     initiateClickHandlers: function () {
         $(".makeBtn").on("click", this.showRecipeModal);
@@ -126,22 +126,24 @@ var view = {
         $('.sfxBtn').on('click', this.toggleSounds);
     },
     toggleSounds: function() {
-        let btnText = $('.sfxBtn');
-        if ($(btnText).text() === 'sounds: on') {
-            $(btnText).text('sounds: off');
+        // let btnText = $('.sfxBtn');
+        if (model.playSounds) {
+            $('.sfxBtn').empty();   
+            $('.sfxBtn').append('<i class="fas fa-volume-off"></i>');
             model.playSounds = false;
         } else {
-            $(btnText).text('sounds: on');
+            $('.sfxBtn').empty();            
+            $('.sfxBtn').append('<i class="fas fa-volume-up"></i>');
             model.playSounds = true;
         }
     },
-    openingSong: function() {
-        view.openSong.play();
-    },
-    fadeout: function() {
-        view.openSong.pause();
-        $("#homeSplash").fadeOut();
-    },
+    // openingSong: function() {
+    //     view.openSong.play();
+    // },
+    // fadeout: function() {
+    //     view.openSong.pause();
+    //     $("#homeSplash").fadeOut();
+    // },
     btnClickSound: function () {
         if (model.playSounds) {
             var crunchSound = new Audio("sounds/crunch_sound.mp3");
@@ -188,38 +190,38 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
+            // styles: [
+            //     {
+            //         featureType: "poi",
+            //         elementType: "labels",
+            //         stylers: [{ visibility: "off" }]
+            //     },
+            //     {
+            //         featureType: "water",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#84C94B" }]
+            //     },
+            //     {
+            //         featureType: "landscape",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     },
+            //     {
+            //         featureType: "road",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#AA6C2B" }]
+            //     },
+            //     {
+            //         featureType: "transit",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#EE6C4B" }]
+            //     },
+            //     {
+            //         featureType: "poi",
+            //         elementType: "geometry",
+            //         stylers: [{ color: "#F4D16C" }]
+            //     }
+            // ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -400,7 +402,6 @@ var controller = {
         $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
     },
     tacoDataObtained: function(data) {
-        debugger;
         let tacoName = this.getSpecificTacoName(data.name);
         let gleanedRecipe = this.gleanRecipe(data.recipe);
         let layersArray = [];
