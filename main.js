@@ -22,7 +22,7 @@ var model = {
     service: null,
     currentDate: new Date(),
     loc: null,
-    searchRadius: 3000,
+    searchRadius: 2414,
     playSounds: true,
 
     imgAPICall: function(query, ele) {
@@ -92,7 +92,11 @@ var model = {
     },
     handleZipcodeInput: function() {
         if ($('#searchRadiusInput').val() !== '') {
-            model.searchRadius = Number($('#searchRadiusInput').val());
+            let miles = Number($('#searchRadiusInput').val());
+            let meters = miles * 1609.34;
+            console.log('converted to meters ', meters);
+            model.searchRadius = meters;
+            // model.searchRadius = Number($('#searchRadiusInput').val());
         }
         if ($('#zipcodeSearch').val() !== '') {
             model.loc = $('#zipcodeSearch').val();
