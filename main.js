@@ -400,7 +400,7 @@ var controller = {
         var getTacoOptions = {
             dataType: "json",
             method: "get",
-            url: "http://taco-randomizer.herokuapp.com/random/?full-taco=true"
+            url: "https://taco-randomizer.herokuapp.com/random/?full-taco=true"
         };
 
         $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
