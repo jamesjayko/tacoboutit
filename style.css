@@ -339,6 +339,7 @@ input#searchRadiusInput {
   width: 100%;
 }
 .listItem {
+  position: relative;
   text-align: center;
   height: 100px;
   width: 100%;
@@ -371,7 +372,7 @@ input#searchRadiusInput {
 .open,
 .closed,
 .infoBtn {
-  padding: 5px;
+  padding: 1%;
   display: inline-block;
 }
 .open {
