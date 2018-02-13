@@ -114,14 +114,13 @@ var model = {
 //====================================================//
 
 var view = {
-    // openSong: new Audio("sounds/raining_taco_song.mp3"),
-
     initiateClickHandlers: function () {
         $(".makeBtn").on("click", this.showRecipeModal);
         $(".findBtn").on("click", controller.loadSearchTacoModal.bind(controller));
         $(".recipeModalFrontHome").on("click", this.hideRecipeModal);
         $(".recipeModalBackHome").on("click", this.hideRecipeModalBack);
         $(".searchModalReturn").on("click", this.hideSearchModal);
+        $('.searchModalExpandToggle').on('click', this.toggleSearchModalExpand);
         $(".recipeModalReturn").on("click", this.flipRecipeModalToFront );
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
         $('.modalButton').on('click', this.btnClickSound);
@@ -130,7 +129,6 @@ var view = {
         $('.sfxBtn').on('click', this.toggleSounds);
     },
     toggleSounds: function() {
-        // let btnText = $('.sfxBtn');
         if (model.playSounds) {
             $('.sfxBtn').empty();   
             $('.sfxBtn').append('<i class="fas fa-volume-off"></i>');
@@ -141,13 +139,6 @@ var view = {
             model.playSounds = true;
         }
     },
-    // openingSong: function() {
-    //     view.openSong.play();
-    // },
-    // fadeout: function() {
-    //     view.openSong.pause();
-    //     $("#homeSplash").fadeOut();
-    // },
     btnClickSound: function () {
         if (model.playSounds) {
             var crunchSound = new Audio("sounds/crunch_sound.mp3");
@@ -173,11 +164,11 @@ var view = {
         }, 500)
     },
     hideRecipeModal: function () {
-        $(".recipeModalContainer").attr("style", "top: -100%");
+        $(".recipeModalContainer").attr("style", "top: -250%");
     },
     hideRecipeModalBack: function(){
         $(".recipeModalContainer").css({
-                top: '-100%',
+                top: '-250%',
                 transform: 'translate(-50%, 0) rotateY(180deg)'
             });
     },
@@ -186,46 +177,51 @@ var view = {
         view.btnClickSound();
     },
     hideSearchModal: function () {
-        $(".searchModalContainer").attr("style", "top: -100");
+        $(".searchModalContainer").attr("style", "top: -250");
     },
-    
+    toggleSearchModalExpand: function(){
+        $('.searchModal').children().toggleClass('map-expand');
+        var icon = $('.searchModalExpandToggle').children();
+        icon.toggleClass('fa-caret-down');
+        icon.toggleClass('fa-caret-up');
+    },
     initMap: function () {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            // styles: [
-            //     {
-            //         featureType: "poi",
-            //         elementType: "labels",
-            //         stylers: [{ visibility: "off" }]
-            //     },
-            //     {
-            //         featureType: "water",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#84C94B" }]
-            //     },
-            //     {
-            //         featureType: "landscape",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     },
-            //     {
-            //         featureType: "road",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#AA6C2B" }]
-            //     },
-            //     {
-            //         featureType: "transit",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#EE6C4B" }]
-            //     },
-            //     {
-            //         featureType: "poi",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     }
-            // ]
+            styles: [
+                {
+                    featureType: "poi",
+                    elementType: "labels",
+                    stylers: [{ visibility: "off" }]
+                },
+                {
+                    featureType: "water",
+                    elementType: "geometry",
+                    stylers: [{ color: "#84C94B" }]
+                },
+                {
+                    featureType: "landscape",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                },
+                {
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [{ color: "#AA6C2B" }]
+                },
+                {
+                    featureType: "transit",
+                    elementType: "geometry",
+                    stylers: [{ color: "#EE6C4B" }]
+                },
+                {
+                    featureType: "poi",
+                    elementType: "geometry",
+                    stylers: [{ color: "#F4D16C" }]
+                }
+            ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -247,7 +243,6 @@ var view = {
         }
     },
     createMarker: function createMarker(place) {
-        // var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: model.map,
             position: place.geometry.location,
@@ -280,10 +275,10 @@ var view = {
             (function() {
                 linkElement.on('click', openAndShowComponentRecipe.bind(view) );
                 function openAndShowComponentRecipe() {
-                    this.clearRecipeModalText( $('.recipeTextBack') );
-                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeNameBack h2') );
+                    this.clearRecipeModalText( $('.recipeTextBack p') );
+                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeTextBack h2') );
                     let gleanedRecipe = controller.gleanRecipe( linksArray[i].recipe );
-                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack') );
+                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack p') );
                     this.flipRecipeModalToBack();
                 }
             })();
@@ -400,7 +395,7 @@ var controller = {
         var getTacoOptions = {
             dataType: "json",
             method: "get",
-            url: "http://taco-randomizer.herokuapp.com/random/?full-taco=true"
+            url: "https://taco-randomizer.herokuapp.com/random/?full-taco=true"
         };
 
         $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
