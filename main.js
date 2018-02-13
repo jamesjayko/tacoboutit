@@ -173,11 +173,11 @@ var view = {
         }, 500)
     },
     hideRecipeModal: function () {
-        $(".recipeModalContainer").attr("style", "top: -100%");
+        $(".recipeModalContainer").attr("style", "top: -250%");
     },
     hideRecipeModalBack: function(){
         $(".recipeModalContainer").css({
-                top: '-100%',
+                top: '-250%',
                 transform: 'translate(-50%, 0) rotateY(180deg)'
             });
     },
@@ -186,7 +186,7 @@ var view = {
         view.btnClickSound();
     },
     hideSearchModal: function () {
-        $(".searchModalContainer").attr("style", "top: -100");
+        $(".searchModalContainer").attr("style", "top: -250");
     },
     
     initMap: function () {
@@ -280,10 +280,10 @@ var view = {
             (function() {
                 linkElement.on('click', openAndShowComponentRecipe.bind(view) );
                 function openAndShowComponentRecipe() {
-                    this.clearRecipeModalText( $('.recipeTextBack') );
-                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeNameBack h2') );
+                    this.clearRecipeModalText( $('.recipeTextBack p') );
+                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeTextBack h2') );
                     let gleanedRecipe = controller.gleanRecipe( linksArray[i].recipe );
-                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack') );
+                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack p') );
                     this.flipRecipeModalToBack();
                 }
             })();
