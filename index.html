@@ -17,18 +17,10 @@
 </head>
 
 <body>
-    <!-- <div class="container" id="homeSplash">
-        <h2>click taco to continue</h2>
-        <div id="homeImg">
-            <img src="images/meal_with_it.gif" alt="">
-        </div>
-        
-    </div> -->
     <div class="container">
         <div class="sfxBtn"><i class="fas fa-volume-up"></i></div>
         <div class="homeContainer">
             <div id="header">
-                <!-- <img src="images/taco_cat_hp.gif" alt="taco cat homepage logo"> -->
                 <h1>TACO'BOUT IT</h1>
             </div>
             <div id="tacoTuesday"></div>
@@ -61,32 +53,34 @@
 
     <div class="searchModalContainer">
         <div class="searchModal">
-            <div class="searchName">
-                <h2>Tacos Near You</h2>
-            </div>
-            <div class="mapContainer">
-                <div class="loader">
-                    <img src="images/taco_cat.gif" alt="">
-                    <img src="images/taco_load.png" alt="">
+            <div class="map-content">
+                <div class="searchName">
+                    <h2>Tacos Near You</h2>
                 </div>
-                <div id="map" draggable="true"></div>
-            </div>
-            <div class="inputContainer">
-                <input id="zipcodeSearch" type="number" placeholder="search by zipcode">
-
-                <input id="searchRadiusInput" type="number" placeholder="1.5 miles">
-                <button class="zipcodeBtn">Go</button>
-
+                <div class="mapContainer">
+                    <div class="loader">
+                        <img src="images/taco_cat.gif" alt="">
+                        <img src="images/taco_load.png" alt="">
+                    </div>
+                    <div id="map" draggable="true"></div>
+                </div>
+                <div class="inputContainer">
+                    <input id="zipcodeSearch" type="number" placeholder="search by zipcode">
+                    <input id="searchRadiusInput" type="number" placeholder="1.5 miles">
+                    <button class="zipcodeBtn">Go</button>
+                </div>
             </div>
             <div class="placesList">
                 <div class="loader">
                     <img src="images/taco_cat.gif" alt="">
                     <img src="images/taco_load.png" alt="">
-
                 </div>
             </div>
 
             <button class="modalButton searchModalReturn">Home</button>
+            <button class="modalButton searchModalExpandToggle">
+                <i class="fa fa-caret-up"></i>
+            </button>
         </div>
     </div>
 
