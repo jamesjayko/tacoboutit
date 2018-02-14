@@ -259,7 +259,17 @@ var view = {
         element.text(headerText);
     },
     appendImg: function (ele, imgLink) {
-        ele.attr("src", imgLink);
+        $.ajax({
+            type: 'HEAD',
+            async: true,
+            url: imgLink,
+            success: function(){
+                ele.attr("src", imgLink);
+            },
+            error: function(){
+                ele.attr("src", './images/taco_default2.jpg');
+            }
+        })
     },
     clearRecipeModalText: function(element){
         element.empty();
@@ -440,7 +450,6 @@ var controller = {
         for (var qI = 0; qI < qArray.length; qI++) {
             if (qArray[qI].title.indexOf("aco") !== -1) {
                 view.appendImg(ele, qArray[qI].link);
-                return qArray[qI].link;
             }
         }
     },
