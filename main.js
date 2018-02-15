@@ -4,7 +4,6 @@ $(document).ready(initializeApp);
 function initializeApp() {
     controller.getLocation();
     view.initiateClickHandlers();
-    // view.openingSong();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
 }
@@ -96,7 +95,6 @@ var model = {
             let meters = miles * 1609.34;
             console.log('converted to meters ', meters);
             model.searchRadius = meters;
-            // model.searchRadius = Number($('#searchRadiusInput').val());
         }
         if ($('#zipcodeSearch').val() !== '') {
             model.loc = $('#zipcodeSearch').val();
@@ -190,38 +188,6 @@ var view = {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            // styles: [
-            //     {
-            //         featureType: "poi",
-            //         elementType: "labels",
-            //         stylers: [{ visibility: "off" }]
-            //     },
-            //     {
-            //         featureType: "water",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#84C94B" }]
-            //     },
-            //     {
-            //         featureType: "landscape",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     },
-            //     {
-            //         featureType: "road",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#AA6C2B" }]
-            //     },
-            //     {
-            //         featureType: "transit",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#EE6C4B" }]
-            //     },
-            //     {
-            //         featureType: "poi",
-            //         elementType: "geometry",
-            //         stylers: [{ color: "#F4D16C" }]
-            //     }
-            // ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -259,17 +225,7 @@ var view = {
         element.text(headerText);
     },
     appendImg: function (ele, imgLink) {
-        $.ajax({
-            type: 'HEAD',
-            async: true,
-            url: imgLink,
-            success: function(){
-                ele.attr("src", imgLink);
-            },
-            error: function(){
-                ele.attr("src", './images/taco_default2.jpg');
-            }
-        })
+        ele.attr("src", imgLink);
     },
     clearRecipeModalText: function(element){
         element.empty();
