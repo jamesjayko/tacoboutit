@@ -4,7 +4,6 @@ $(document).ready(initializeApp);
 function initializeApp() {
     controller.getLocation();
     view.initiateClickHandlers();
-    view.openingSong();
     controller.tacoTuesdayCountdown(model.currentDate);
     controller.createTacoRecipe();
 }
@@ -15,20 +14,16 @@ function initializeApp() {
 
 
 var model = {
-    // currentTaco: null,
     i: 0,
-    // map: null,
     infoWindow: null,
     resultsArr: null,
     searchLocation: null,
     service: null,
     currentDate: new Date(),
     loc: null,
-    searchRadius: 3000,
+    searchRadius: 2414,
+    playSounds: true,
 
-    // setCurrentTaco: function(data) {
-    //     this.currentTaco = data;
-    // },
     imgAPICall: function(query, ele) {
         var ajaxOptions = {
             url: "https://www.googleapis.com/customsearch/v1",
@@ -38,7 +33,7 @@ var model = {
                 q: query,
                 cx: "000707611873255015719:e0z9hyzysu4",
                 searchType: "image",
-                key: "AIzaSyBQWFoSuCzyIqJj0Kiyc_QEgPUcucNhImM"
+                key: "AIzaSyDI49X7IObH6sgXDPUK5uSEBf2EWdCmrHc"
             },
             error: function(data) {
                 console.log(data);
@@ -49,7 +44,7 @@ var model = {
     },
     getPlaceDetails: function() {
         var first = true;
-        function grabAdditionalDetails() {
+        function getAdditionalPlaceDetails() {
             model.service.getDetails(
                 {
                     placeId: model.resultsArr[model.i].place_id,
@@ -69,17 +64,15 @@ var model = {
             if (first) {
                 first = false;
                 model.i = 0;
-                grabAdditionalDetails();
+                getAdditionalPlaceDetails();
             } else if (model.i > model.resultsArr.length - 1) {
                 model.i = 0;
-//test for necessity
             } else {
-                grabAdditionalDetails();
+                getAdditionalPlaceDetails();
             }
 
         }, 500);
     },
-
     geocode: function() {
         $.ajax({
             url: 'https://maps.googleapis.com/maps/api/geocode/json?address=' + model.loc + '&key=AIzaSyDmBiq2uv9zLd2A1G5KwCbSaUYhMwO6mJg',
@@ -98,7 +91,10 @@ var model = {
     },
     handleZipcodeInput: function() {
         if ($('#searchRadiusInput').val() !== '') {
-            model.searchRadius = Number($('#searchRadiusInput').val());
+            let miles = Number($('#searchRadiusInput').val());
+            let meters = miles * 1609.34;
+            console.log('converted to meters ', meters);
+            model.searchRadius = meters;
         }
         if ($('#zipcodeSearch').val() !== '') {
             model.loc = $('#zipcodeSearch').val();
@@ -108,8 +104,6 @@ var model = {
         }
         $('.placesList  div').remove();
     }
-
-
 };
 
 
@@ -118,29 +112,36 @@ var model = {
 //====================================================//
 
 var view = {
-    openSong: new Audio("sounds/raining_taco_song.mp3"),
-
     initiateClickHandlers: function () {
         $(".makeBtn").on("click", this.showRecipeModal);
         $(".findBtn").on("click", controller.loadSearchTacoModal.bind(controller));
         $(".recipeModalFrontHome").on("click", this.hideRecipeModal);
         $(".recipeModalBackHome").on("click", this.hideRecipeModalBack);
         $(".searchModalReturn").on("click", this.hideSearchModal);
+        $('.searchModalExpandToggle').on('click', this.toggleSearchModalExpand);
         $(".recipeModalReturn").on("click", this.flipRecipeModalToFront );
         $(".recipeModalGetNew").on("click", controller.createTacoRecipe.bind(controller));
+        $('.modalButton').on('click', this.btnClickSound);
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);
         $('#homeImg').on('click', this.fadeout);
+        $('.sfxBtn').on('click', this.toggleSounds);
     },
-    openingSong: function() {
-        view.openSong.play();
-    },
-    fadeout: function() {
-        view.openSong.pause();
-        $("#homeSplash").fadeOut();
+    toggleSounds: function() {
+        if (model.playSounds) {
+            $('.sfxBtn').empty();   
+            $('.sfxBtn').append('<i class="fas fa-volume-off"></i>');
+            model.playSounds = false;
+        } else {
+            $('.sfxBtn').empty();            
+            $('.sfxBtn').append('<i class="fas fa-volume-up"></i>');
+            model.playSounds = true;
+        }
     },
     btnClickSound: function () {
-        var crunchSound = new Audio("sounds/crunch_sound.mp3");
-        crunchSound.play();
+        if (model.playSounds) {
+            var crunchSound = new Audio("sounds/crunch_sound.mp3");
+            crunchSound.play();
+        }
     },
     showRecipeModal: function () {
         $(".recipeModalContainer").css("top", "0");
@@ -161,62 +162,32 @@ var view = {
         }, 500)
     },
     hideRecipeModal: function () {
-        $(".recipeModalContainer").attr("style", "top: -100%");
-        view.btnClickSound();
+        $(".recipeModalContainer").attr("style", "top: -250%");
     },
     hideRecipeModalBack: function(){
         $(".recipeModalContainer").css({
-                top: '-100%',
+                top: '-250%',
                 transform: 'translate(-50%, 0) rotateY(180deg)'
             });
-        view.btnClickSound();
     },
     showSearchModal: function () {
         $(".searchModalContainer").css("top", "0");
         view.btnClickSound();
     },
     hideSearchModal: function () {
-        $(".searchModalContainer").attr("style", "top: -100");
-        view.btnClickSound();
+        $(".searchModalContainer").attr("style", "top: -250");
     },
-    
+    toggleSearchModalExpand: function(){
+        $('.searchModal').children().toggleClass('map-expand');
+        var icon = $('.searchModalExpandToggle').children();
+        icon.toggleClass('fa-caret-down');
+        icon.toggleClass('fa-caret-up');
+    },
     initMap: function () {
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 12,
             gestureHandling: 'greedy',
-            styles: [
-                {
-                    featureType: "poi",
-                    elementType: "labels",
-                    stylers: [{ visibility: "off" }]
-                },
-                {
-                    featureType: "water",
-                    elementType: "geometry",
-                    stylers: [{ color: "#84C94B" }]
-                },
-                {
-                    featureType: "landscape",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                },
-                {
-                    featureType: "road",
-                    elementType: "geometry",
-                    stylers: [{ color: "#AA6C2B" }]
-                },
-                {
-                    featureType: "transit",
-                    elementType: "geometry",
-                    stylers: [{ color: "#EE6C4B" }]
-                },
-                {
-                    featureType: "poi",
-                    elementType: "geometry",
-                    stylers: [{ color: "#F4D16C" }]
-                }
-            ]
         });
 
         model.infoWindow = new google.maps.InfoWindow();
@@ -226,9 +197,9 @@ var view = {
             radius: model.searchRadius,
             keyword: ('taco+mexican'),
             type: ('restaurant')
-        }, view.callback);
+        }, view.storeResultsAndCallMarkers);
     },
-    callback: function (results, status) {
+    storeResultsAndCallMarkers: function (results, status) {
         model.resultsArr = results;
         model.getPlaceDetails();
         if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -238,7 +209,6 @@ var view = {
         }
     },
     createMarker: function createMarker(place) {
-        // var placeLoc = place.geometry.location;
         var marker = new google.maps.Marker({
             map: model.map,
             position: place.geometry.location,
@@ -267,16 +237,14 @@ var view = {
                 text: "Recipe for " + linksArray[i].name,
                 'class': 'recipeLinks',
             });
-
             // using closure to connect the links I'm making with the appropriate recipe object
-
             (function() {
                 linkElement.on('click', openAndShowComponentRecipe.bind(view) );
                 function openAndShowComponentRecipe() {
-                    this.clearRecipeModalText( $('.recipeTextBack') );
-                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeNameBack h2') );
+                    this.clearRecipeModalText( $('.recipeTextBack p') );
+                    this.changeRecipeModalHeader( linksArray[i].name, $('.recipeTextBack h2') );
                     let gleanedRecipe = controller.gleanRecipe( linksArray[i].recipe );
-                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack') );
+                    this.addRecipeModalText( gleanedRecipe, $('.recipeTextBack p') );
                     this.flipRecipeModalToBack();
                 }
             })();
@@ -284,7 +252,7 @@ var view = {
             linkElements.push(linkElement);
 
         }
-        $('.recipeTextFront').append(linkElements);
+        $('.recipeTextFront p').append(linkElements);
     },
     addRecipeModalText: function (textArray, element) {
         let textTagsArray = [];
@@ -295,7 +263,6 @@ var view = {
         element.append(textTagsArray);
     },
     initList: function () {
-        console.log(model.resultsArr);
         for (var i = 0; i < model.resultsArr.length; i++) {
             var elementsList = [];
 
@@ -307,10 +274,16 @@ var view = {
                     'maxWidth': 100,
                     'maxHeight': 100
                 })).addClass('image');
-                imgContainer.append(img);
-                elementsList.push(imgContainer)
-            }
 
+            } else {
+                var imgContainer = $('<div>').addClass('imgContainer');
+                var img = $('<img>').attr('src', './images/taco_default2.jpg').css({
+                    'maxWidth': 100,
+                    'maxHeight': 100
+                }).addClass('image');
+            }
+            imgContainer.append(img);
+            elementsList.push(imgContainer);
             if (model.resultsArr[i].name.length > 24 && model.resultsArr[i].hasOwnProperty('photos')) {
                 var name = $('<h2>').text(model.resultsArr[i].name).addClass('name makeMeSmaller');
                 elementsList.push(name);
@@ -374,7 +347,7 @@ var controller = {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(controller.showPosition);
         } else {
-            console.log("Geolocation is not supported by this browser.");
+            //Geolocation is not supported by this browser, pull up a modal?
         }
     },
     showPosition: function(position) {
@@ -388,35 +361,34 @@ var controller = {
         var getTacoOptions = {
             dataType: "json",
             method: "get",
-            url: "http://taco-randomizer.herokuapp.com/random/?full-taco=true"
+            url: "https://taco-randomizer.herokuapp.com/random/?full-taco=true"
         };
 
         $.ajax(getTacoOptions).then(controller.tacoDataObtained.bind(this));
     },
-
     tacoDataObtained: function(data) {
         let tacoName = this.getSpecificTacoName(data.name);
         let gleanedRecipe = this.gleanRecipe(data.recipe);
         let layersArray = [];
 
-        view.changeRecipeModalHeader(tacoName, $('.recipeNameFront h2'));
+        view.changeRecipeModalHeader(tacoName, $('.recipeTextFront h2'));
         model.imgAPICall(tacoName, $(".recipeImage img"));
-        view.clearRecipeModalText( $('.recipeTextFront') );
+        view.clearRecipeModalText( $('.recipeTextFront p'));
 
         if (data.base_layer){
             layersArray.push(data.base_layer);
         }
         if (data.condiment){
-            layersArray.push(data.condiment)
+            layersArray.push(data.condiment);
         }
         if (data.mixin){
-            layersArray.push(data.mixin)
+            layersArray.push(data.mixin);
         }
         if (data.shell){
-            layersArray.push(data.shell)
+            layersArray.push(data.shell);
         }
         view.addRecipeModalLinks(layersArray);
-        view.addRecipeModalText(gleanedRecipe, $('.recipeTextFront'));
+        view.addRecipeModalText(gleanedRecipe, $('.recipeTextFront > p'));
     },
 
     getSpecificTacoName: function(longName) {
@@ -434,7 +406,6 @@ var controller = {
         for (var qI = 0; qI < qArray.length; qI++) {
             if (qArray[qI].title.indexOf("aco") !== -1) {
                 view.appendImg(ele, qArray[qI].link);
-                return qArray[qI].link;
             }
         }
     },
@@ -456,7 +427,6 @@ var controller = {
     },
 
     loadSearchTacoModal: function(){
-        // this.getLocation();
         view.showSearchModal();
     },
 
@@ -464,7 +434,7 @@ var controller = {
     tacoTuesdayCountdown: function (date) {
         if (date.getDay() !== 2) {
             date.setDate(date.getDate() + (2 + 7 - date.getDay()) % 7);
-            date.setHours(0,0,0)
+            date.setHours(0,0,0);
             // Set the date we're counting down to
             var countDownDate = new Date(date).getTime();
             // Update the count down every 1 second
