@@ -160,6 +160,7 @@ input#searchRadiusInput {
 .recipeImage {
   margin-top: 10%;
   height: 25%;
+  max-width: 100%;
 }
 
 .recipeImage img {
