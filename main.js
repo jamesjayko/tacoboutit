@@ -285,7 +285,10 @@ var view = {
             imgContainer.append(img);
             elementsList.push(imgContainer);
             if (model.resultsArr[i].name.length > 24 && model.resultsArr[i].hasOwnProperty('photos')) {
-                var name = $('<h2>').text(model.resultsArr[i].name).addClass('name makeMeSmaller');
+                
+                var storeName = controller.nameTruncate(model.resultsArr[i].name);
+
+                var name = $('<h2>').text(storeName).addClass('name makeMeSmaller');
                 elementsList.push(name);
             } else {
                 var name = $('<h2>').text(model.resultsArr[i].name).addClass('name');
@@ -343,6 +346,19 @@ var view = {
 //====================================================//
 
 var controller = {
+    nameTruncate: function(str, length, ending) {
+        if (length == null) {
+          length = 24;
+        }
+        if (ending == null) {
+          ending = '...';
+        }
+        if (str.length > length) {
+          return str.substring(0, length - ending.length) + ending;
+        } else {
+          return str;
+        }
+      },
     getLocation: function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(controller.showPosition);
