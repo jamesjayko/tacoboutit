@@ -341,7 +341,7 @@ input#searchRadiusInput {
 .listItem {
   position: relative;
   text-align: center;
-  height: 100px;
+  height: 15vh;
   width: 100%;
   background-color: white;
   border-bottom: 1px dotted black;
@@ -349,12 +349,11 @@ input#searchRadiusInput {
 
 .imgContainer {
   float: left;
-  height: 90px;
-  width: 100px;
+  height: 100%;
 }
 .imgContainer > img {
   height: 100%;
-  width: 100px;
+  width: 100%;
   margin: 5px;
 }
 
