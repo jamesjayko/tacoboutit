@@ -178,8 +178,6 @@ var view = {
         $(".searchModalContainer").attr("style", "top: -250");
     },
     toggleSearchModalExpand: function () {
-        //Probably add condition check seeing if Map is appended then invoke? else return?
-        console.log('check if model has map prop:', model.hasOwnProperty('map'));
         if (model.hasOwnProperty('map')) {
             $('.searchModal').children().toggleClass('map-expand');
             var icon = $('.searchModalExpandToggle').children();
