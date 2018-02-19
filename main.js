@@ -35,7 +35,7 @@ var model = {
                 searchType: "image",
                 key: "AIzaSyDI49X7IObH6sgXDPUK5uSEBf2EWdCmrHc"
             },
-            error: function () {
+            error: function (data) {
                 view.appendImg(ele, "https://i.imgur.com/iTuHMPB.png");
             }
         };
