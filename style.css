@@ -69,10 +69,6 @@ input#searchRadiusInput {
   transform-style: preserve-3d;
 }
 
-.recipeModalContainer p {
-  font-size: 5vmin;
-}
-
 .searchModalContainer {
   top: -250%;
   transition: 1s;
@@ -477,6 +473,11 @@ input#searchRadiusInput {
   body {
     font-size: 4vmin;
   }
+
+  .recipeModalContainer p {
+    font-size: 5vmin;
+  }
+  
 
   .homeContainer > div > h1 {
     font-size: 7vmin;
