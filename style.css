@@ -69,10 +69,6 @@ input#searchRadiusInput {
   transform-style: preserve-3d;
 }
 
-.recipeModalContainer p {
-  font-size: 5vmin;
-}
-
 .searchModalContainer {
   top: -250%;
   transition: 1s;
@@ -170,6 +166,9 @@ input#searchRadiusInput {
 .recipeImage img {
   border: 4px solid #58260e;
   border-radius: 4px;
+  width: auto;
+  max-width: 100%;
+  height: 100%;
 }
 
 .recipeLinks {
@@ -474,6 +473,11 @@ input#searchRadiusInput {
   body {
     font-size: 4vmin;
   }
+
+  .recipeModalContainer p {
+    font-size: 5vmin;
+  }
+  
 
   .homeContainer > div > h1 {
     font-size: 7vmin;
