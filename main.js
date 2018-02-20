@@ -50,7 +50,6 @@ var model = {
                     placeId: model.resultsArr[model.i].place_id,
                 },
                 function (place) {
-                    console.log(place);
                     model.resultsArr[model.i].simonsData = place;
                     if (model.i === model.resultsArr.length - 1) {
                         clearInterval(int);
@@ -81,11 +80,7 @@ var model = {
             dataType: 'json',
             success: function (success) {
                 model.searchLocation = success.results[0].geometry.location;
-                console.log(model.searchLocation);
                 view.initMap();
-            },
-            error: function (error) {
-                console.log(error);
             },
         })
     },
@@ -93,7 +88,6 @@ var model = {
         if ($('#searchRadiusInput').val() !== '') {
             let miles = Number($('#searchRadiusInput').val());
             let meters = miles * 1609.34;
-            console.log('converted to meters ', meters);
             model.searchRadius = meters;
         }
         if ($('#zipcodeSearch').val() !== '') {
