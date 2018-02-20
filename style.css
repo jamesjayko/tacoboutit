@@ -297,6 +297,10 @@ input#searchRadiusInput {
   margin: 3%;
 }
 
+.searchName h2 {
+  padding-top: 4px;
+}
+
 .fa-caret-up,
 .fa-caret-down {
   font-size: 10vmin;
