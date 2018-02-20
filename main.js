@@ -225,7 +225,7 @@ var view = {
         element.text(headerText);
     },
     appendImg: function (ele, imgLink) {
-        $(ele).attr("src", imgLink);
+        ele.attr("src", imgLink);
     },
     clearRecipeModalText: function (element) {
         element.empty();
