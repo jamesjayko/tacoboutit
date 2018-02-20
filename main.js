@@ -119,6 +119,7 @@ var view = {
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);
         $('#homeImg').on('click', this.fadeout);
         $('.sfxBtn').on('click', this.toggleSounds);
+        $('.recipeImage img')[0].onerror = function(){this.appendImg($('.recipeImage img'), "https://i.imgur.com/iTuHMPB.png")}.bind(this)
     },
     toggleSounds: function () {
         if (model.playSounds) {
@@ -224,7 +225,7 @@ var view = {
         element.text(headerText);
     },
     appendImg: function (ele, imgLink) {
-        ele.attr("src", imgLink);
+        $(ele).attr("src", imgLink);
     },
     clearRecipeModalText: function (element) {
         element.empty();
