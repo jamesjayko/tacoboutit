@@ -69,6 +69,10 @@ input#searchRadiusInput {
   transform-style: preserve-3d;
 }
 
+.recipeModalContainer p {
+  font-size: 5vmin;
+}
+
 .searchModalContainer {
   top: -250%;
   transition: 1s;
@@ -355,7 +359,6 @@ input#searchRadiusInput {
 .imgContainer > img {
   height: 100%;
   width: 100%;
-  margin: 5px;
 }
 
 .image {
@@ -364,7 +367,7 @@ input#searchRadiusInput {
 .name {
   font-size: 1rem;
   margin: 0;
-  padding-top: 15px;
+  padding-top: 5px;
 }
 
 .phoneNumber,
