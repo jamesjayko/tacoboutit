@@ -7,7 +7,7 @@ This repo is a web application created by a team of four during a full immersion
   - Google Maps API
   - Google Places API
   - Taco Recipe API
-  - Google Image Search API
+  - Flickr API
 - Organized our application with **Model, View, Controller** architectural pattern
 - Documented loosely on JSDOC standards
 - Project Team Management Tasks with Meistertask
