@@ -80,9 +80,6 @@ var model = {
                 } else {
                     view.noPlacesFound();
                 }
-            },
-            error: function (error){
-                console.log(error);
             }
         })
     },
