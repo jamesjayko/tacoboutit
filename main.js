@@ -73,10 +73,17 @@ var model = {
             method: 'get',
             cache: false,
             dataType: 'json',
-            success: function (success) {
-                model.searchLocation = success.results[0].geometry.location;
-                view.initMap();
+            success: function (data) {
+                if (data.status === 'OK'){
+                    model.searchLocation = data.results[0].geometry.location;
+                    view.initMap();
+                } else {
+                    view.noPlacesFound();
+                }
             },
+            error: function (error){
+                console.log(error);
+            }
         })
     },
     handleZipcodeInput: function () {
@@ -324,6 +331,12 @@ var view = {
             }
 
         }
+    },
+    noPlacesFound: function(){
+        var errorTextDiv = $('<div>',{
+            text: 'No restaurants found based off of location and radius'
+        })
+        $('.placesList').append(errorTextDiv);
     },
     tacoTuesdayTimer: function (d, h, m, s) {
         $("#tacoTuesday").empty();
