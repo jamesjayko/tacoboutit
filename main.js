@@ -26,21 +26,16 @@ var model = {
 
     imgAPICall: function (query, ele) {
         var ajaxOptions = {
-            url: "https://www.googleapis.com/customsearch/v1",
             method: "GET",
-            dataType: "JSON",
-            data: {
-                q: query,
-                cx: "000707611873255015719:e0z9hyzysu4",
-                searchType: "image",
-                key: "AIzaSyDI49X7IObH6sgXDPUK5uSEBf2EWdCmrHc"
-            },
+            url: `https://api.flickr.com/services/rest?method=flickr.photos.search&api_key=3fc073b0106c2754cfcfda60ff2ea8ba&format=json&nojsoncallback=1&text=${query}&per_page=10`,
             error: function (data) {
                 view.appendImg(ele, "https://i.imgur.com/iTuHMPB.png");
             }
         };
 
-        $.ajax(ajaxOptions).then(controller.tacoImageFilter.bind(null, ele));
+        $.ajax(ajaxOptions).then(
+            controller.tacoImageFilter.bind(null, ele, query)
+        );
     },
     getPlaceDetails: function () {
         var first = true;
@@ -119,7 +114,7 @@ var view = {
         $('.zipcodeBtn').on('click', model.handleZipcodeInput);
         $('#homeImg').on('click', this.fadeout);
         $('.sfxBtn').on('click', this.toggleSounds);
-        $('.recipeImage img')[0].onerror = function(){this.appendImg($('.recipeImage img'), "https://i.imgur.com/iTuHMPB.png")}.bind(this)
+        $('.recipeImage img')[0].onerror = function () { this.appendImg($('.recipeImage img'), "https://i.imgur.com/iTuHMPB.png") }.bind(this)
     },
     toggleSounds: function () {
         if (model.playSounds) {
@@ -416,12 +411,11 @@ var controller = {
         return shortName;
     },
 
-    tacoImageFilter: function (ele, data) {
-        var qArray = data.items;
-
+    tacoImageFilter: function (ele, query, data) {
+        var qArray = data.photos.photo;
         for (var qI = 0; qI < qArray.length; qI++) {
             if (qArray[qI].title.indexOf("aco") !== -1) {
-                view.appendImg(ele, qArray[qI].link);
+                view.appendImg(ele, `https://farm${qArray[qI].farm}.staticflickr.com/${qArray[qI].server}/${qArray[qI].id}_${qArray[qI].secret}.jpg`);
             }
         }
     },
