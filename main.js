@@ -52,13 +52,11 @@ var model = {
                         model.resultsArr[model.i].simonsData = place;
                         if (model.i === model.resultsArr.length - 1) {
                             clearInterval(model.int);
-                            console.log(model.int)
                             view.initList();
                         }
                     }
                 );
             }
-            // console.log(model.int);
             model.int = setInterval(function () {
                 model.i++;
                 if (first) {
