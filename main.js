@@ -1,17 +1,15 @@
 $(document).ready(initializeApp);
 
-
 function initializeApp() {
-    controller.getLocation();
-    view.initiateClickHandlers();
-    controller.tacoTuesdayCountdown(model.currentDate);
-    controller.createTacoRecipe();
+	controller.getLocation();
+	view.initiateClickHandlers();
+	controller.tacoTuesdayCountdown(model.currentDate);
+	controller.createTacoRecipe();
 }
 
 //====================================================//
 //==================== MODEL =========================//
 //====================================================//
-
 
 var model = {
     i: 0,
@@ -109,9 +107,14 @@ var model = {
             view.initMap();
         }
         $('.placesList  div').remove();
+        var catImg = $("<img>").attr("src", "images/taco_cat.gif");
+		var tacoImg = $("<img>").attr("src", "images/taco_load.png");
+		var loader = $("<div>")
+			.addClass("loader")
+			.append(catImg, tacoImg);
+		$(".placesList").append(loader);
     }
 };
-
 
 //====================================================//
 //===================== VIEW =========================//
@@ -379,6 +382,12 @@ var controller = {
         }
     },
     getLocation: function () {
+        var catImg = $("<img>").attr("src", "images/taco_cat.gif");
+		var tacoImg = $("<img>").attr("src", "images/taco_load.png");
+		var loader = $("<div>")
+			.addClass("loader")
+			.append(catImg, tacoImg);
+		$(".placesList").append(loader);
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(controller.showPosition);
         } 
