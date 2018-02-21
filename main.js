@@ -413,10 +413,16 @@ var controller = {
 
     tacoImageFilter: function (ele, query, data) {
         var qArray = data.photos.photo;
+        var photoFound = false;
+
         for (var qI = 0; qI < qArray.length; qI++) {
             if (qArray[qI].title.indexOf("aco") !== -1) {
                 view.appendImg(ele, `https://farm${qArray[qI].farm}.staticflickr.com/${qArray[qI].server}/${qArray[qI].id}_${qArray[qI].secret}.jpg`);
+                photoFound = true;
             }
+        }
+        if (!photoFound){
+            view.appendImg(ele, "https://i.imgur.com/iTuHMPB.png");
         }
     },
 
