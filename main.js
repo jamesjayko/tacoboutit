@@ -23,6 +23,7 @@ var model = {
     loc: null,
     searchRadius: 2414,
     playSounds: true,
+    int: null,
 
     imgAPICall: function (query, ele) {
         var ajaxOptions = {
@@ -39,33 +40,41 @@ var model = {
     },
     getPlaceDetails: function () {
         var first = true;
-        function getAdditionalPlaceDetails() {
-            model.service.getDetails(
-                {
-                    placeId: model.resultsArr[model.i].place_id,
-                },
-                function (place) {
-                    model.resultsArr[model.i].simonsData = place;
-                    if (model.i === model.resultsArr.length - 1) {
-                        clearInterval(int);
-                        view.initList();
-                    }
-                }
-            );
-        }
-        var int = setInterval(function () {
-            model.i++;
-            if (first) {
-                first = false;
-                model.i = 0;
-                getAdditionalPlaceDetails();
-            } else if (model.i > model.resultsArr.length - 1) {
-                model.i = 0;
-            } else {
-                getAdditionalPlaceDetails();
-            }
+        clearInterval(model.int);
 
-        }, 500);
+        if (model.resultsArr[0]){
+            function getAdditionalPlaceDetails() {
+                model.service.getDetails(
+                    {
+                        placeId: model.resultsArr[model.i].place_id,
+                    },
+                    function (place) {
+                        model.resultsArr[model.i].simonsData = place;
+                        if (model.i === model.resultsArr.length - 1) {
+                            clearInterval(model.int);
+                            console.log(model.int)
+                            view.initList();
+                        }
+                    }
+                );
+            }
+            // console.log(model.int);
+            model.int = setInterval(function () {
+                model.i++;
+                if (first) {
+                    first = false;
+                    model.i = 0;
+                    getAdditionalPlaceDetails();
+                } else if (model.i > model.resultsArr.length - 1) {
+                    model.i = 0;
+                } else {
+                    getAdditionalPlaceDetails();
+                }
+
+            }, 500);
+        } else {
+            view.noPlacesFound();
+        }
     },
     geocode: function () {
         $.ajax({
@@ -78,6 +87,7 @@ var model = {
                     model.searchLocation = data.results[0].geometry.location;
                     view.initMap();
                 } else {
+                    clearInterval(model.int);
                     view.noPlacesFound();
                 }
             }
@@ -86,6 +96,11 @@ var model = {
     handleZipcodeInput: function () {
         if ($('#searchRadiusInput').val() !== '') {
             let miles = Number($('#searchRadiusInput').val());
+            if (miles > 10){
+                miles = 10;
+            } else if (miles < 1){
+                miles = 1;
+            }
             let meters = miles * 1609.34;
             model.searchRadius = meters;
         }
@@ -262,6 +277,7 @@ var view = {
         element.append(textTagsArray);
     },
     initList: function () {
+
         for (var i = 0; i < model.resultsArr.length; i++) {
             var elementsList = [];
 
@@ -326,12 +342,12 @@ var view = {
                 $(".placesList > .loader").remove();
                 $('.placesList').append(newDiv);
             }
-
         }
     },
     noPlacesFound: function(){
         var errorTextDiv = $('<div>',{
-            text: 'No restaurants found based off of location and radius'
+            text: 'No restaurants found based off of given location and/or search radius',
+            'class': 'emptyPlacesList'
         })
         $('.placesList').append(errorTextDiv);
     },
@@ -367,9 +383,7 @@ var controller = {
     getLocation: function () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(controller.showPosition);
-        } else {
-            //Geolocation is not supported by this browser, pull up a modal?
-        }
+        } 
     },
     showPosition: function (position) {
         model.searchLocation = {

@@ -445,6 +445,11 @@ input#searchRadiusInput {
   height: 80%;
   padding: 7px;
 }
+
+.emptyPlacesList{
+  font-size: 1.3rem;
+}
+
 .makeMeSmaller {
   font-size: 0.8rem;
 }
