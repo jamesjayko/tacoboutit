@@ -188,14 +188,11 @@ var view = {
         $(".searchModalContainer").attr("style", "top: -250");
     },
     toggleSearchModalExpand: function () {
-        if (model.hasOwnProperty('map')) {
+        if ( $('.placesList').children()[0].className === 'listItem' ) {
             $('.searchModal').children().toggleClass('map-expand');
             var icon = $('.searchModalExpandToggle').children();
             icon.toggleClass('fa-caret-down');
             icon.toggleClass('fa-caret-up');
-        }
-        else {
-            return;
         }
     },
     initMap: function () {
