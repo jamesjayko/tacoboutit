@@ -350,7 +350,7 @@ var view = {
             text: 'No restaurants found based off of given location and/or search radius',
             'class': 'emptyPlacesList'
         })
-        $('.placesList').append(errorTextDiv);
+        $('.placesList').empty().append(errorTextDiv);
     },
     tacoTuesdayTimer: function (d, h, m, s) {
         $("#tacoTuesday").empty();
