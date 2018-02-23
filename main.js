@@ -16,6 +16,7 @@ var model = {
     infoWindow: null,
     resultsArr: null,
     searchLocation: null,
+    geolocation: false,
     service: null,
     currentDate: new Date(),
     loc: null,
@@ -90,6 +91,9 @@ var model = {
         })
     },
     handleZipcodeInput: function () {
+
+        view.addLoadingPlacesSpinner();
+
         if ($('#searchRadiusInput').val() !== '') {
             let miles = Number($('#searchRadiusInput').val());
             if (miles > 10){
@@ -100,19 +104,17 @@ var model = {
             let meters = miles * 1609.34;
             model.searchRadius = meters;
         }
+
         if ($('#zipcodeSearch').val() !== '') {
             model.loc = $('#zipcodeSearch').val();
             model.geocode();
         } else {
-            view.initMap();
+            controller.getLocation();
+
+            if (this.geolocation){
+                view.initMap();
+            }
         }
-        $('.placesList  div').remove();
-        var catImg = $("<img>").attr("src", "images/taco_cat.gif");
-		var tacoImg = $("<img>").attr("src", "images/taco_load.png");
-		var loader = $("<div>")
-			.addClass("loader")
-			.append(catImg, tacoImg);
-		$(".placesList").append(loader);
     }
 };
 
@@ -195,7 +197,18 @@ var view = {
             icon.toggleClass('fa-caret-up');
         }
     },
+    addLoadingPlacesSpinner: function() {
+        $('.placesList  div').remove();
+        var catImg = $("<img>").attr("src", "images/taco_cat.gif");
+		var tacoImg = $("<img>").attr("src", "images/taco_load.png");
+		var loader = $("<div>")
+			.addClass("loader")
+			.append(catImg, tacoImg);
+		$(".placesList").append(loader);
+    },
     initMap: function () {
+        this.addLoadingPlacesSpinner();
+
         model.map = new google.maps.Map(document.getElementById('map'), {
             center: model.searchLocation,
             zoom: 12,
@@ -379,14 +392,11 @@ var controller = {
         }
     },
     getLocation: function () {
-        var catImg = $("<img>").attr("src", "images/taco_cat.gif");
-		var tacoImg = $("<img>").attr("src", "images/taco_load.png");
-		var loader = $("<div>")
-			.addClass("loader")
-			.append(catImg, tacoImg);
-		$(".placesList").append(loader);
+        view.addLoadingPlacesSpinner();
+
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(controller.showPosition);
+            navigator.geolocation.getCurrentPosition(controller.showPosition, view.noPlacesFound);
+            model.geolocation = true;
         } 
     },
     showPosition: function (position) {
