@@ -397,7 +397,6 @@ var controller = {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(controller.showPosition, view.noPlacesFound);
             model.geolocation = true;
-            return true;
         } 
     },
     showPosition: function (position) {
