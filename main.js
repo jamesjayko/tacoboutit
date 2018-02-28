@@ -93,6 +93,7 @@ var model = {
     handleZipcodeInput: function () {
 
         view.addLoadingPlacesSpinner();
+        view.disableListToggle();
 
         if ($('#searchRadiusInput').val() !== '') {
             let miles = Number($('#searchRadiusInput').val());
@@ -354,6 +355,16 @@ var view = {
                 $('.placesList').append(newDiv);
             }
         }
+        
+        if (model.resultsArr.length){
+            view.enableListToggle();
+        }
+    },
+    enableListToggle: function(){
+        $('.searchModalExpandToggle').addClass('enabled').attr('disabled', false);
+    },
+    disableListToggle: function(){
+        $('.searchModalExpandToggle').removeClass('enabled').attr('disabled', true);
     },
     noPlacesFound: function(){
         var errorTextDiv = $('<div>',{
