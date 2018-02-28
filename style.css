@@ -259,7 +259,7 @@ input#searchRadiusInput {
 
 .recipeModalGetNew,
 .recipeModalBackHome,
-.searchModalExpandToggle {
+.enabled {
   right: 2%;
   background-color: #84c94b;
   border-color: #00a400 #007500 #007500 #00a400;
@@ -274,14 +274,14 @@ input#searchRadiusInput {
 .recipeModalGetNew:active,
 .findBtn:active,
 .recipeModalBackHome:active,
-.searchModalExpandToggle:active {
+.enabled:active {
   border-color: #007500 #00a400 #00a400 #007500;
 }
 
 .recipeModalGetNew:hover,
 .findBtn:hover,
 .recipeModalBackHome:hover,
-.searchModalExpandToggle:hover {
+.enabled:hover {
   background-color: #67ab4a;
 }
 
