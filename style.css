@@ -140,7 +140,7 @@ input#searchRadiusInput {
 
 .homeContainer > div > h1 {
   margin: auto auto;
-  font-size: 6vmin;
+  font-size: 4vmin;
   color: #aa6c2b;
   font-family: "Syncopate", sans-serif;
 }
@@ -215,7 +215,7 @@ input#searchRadiusInput {
   bottom: 1%;
   width: 47%;
   height: 15%;
-  font-size: 5vmin;
+  font-size: 4vmin;
   border-radius: 25px;
   border: 3px solid;
 }
